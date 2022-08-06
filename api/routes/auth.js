@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const authController = require('../controllers/authController');
 const Account = require("../models/Account");
 
 //Register
@@ -20,5 +21,8 @@ router.post("/register", async (req,res) => {
         }
     });
 });
+
+// Login
+router.post('/login', authController.login);
 
 module.exports = router;
