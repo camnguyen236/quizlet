@@ -27,7 +27,8 @@ const AccountSchema = new mongoose.Schema({
         type: String,
         required: true,
         default: "./defaultProfilePic.jpg"
-    }
+    },
+    refreshToken: [String]
 });
 
 module.exports = mongoose.model("Account", AccountSchema);
