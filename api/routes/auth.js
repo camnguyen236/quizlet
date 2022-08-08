@@ -1,24 +1,12 @@
 const router = require('express').Router();
 const Account = require("../models/Account");
+const bcrypt = require("bcrypt");
+const authController = require('../controller/authController')
 
 //Register
 
-router.post("/register", async (req,res) => {
-    const newAccount = new Account({
-        username: req.body.username,
-        name: req.body.name,
-        password: req.body.password,
-        email: req.body.email,
-        birthday: req.body.birthday,
-        profilePicture: req.body.profilePicture
-    });
-    const account = await newAccount.save((err) => {
-        if(err) {
-            res.status(500).json(err);
-        } else {
-            res.status(200).json(account);
-        }
-    });
-});
-
+router.post("/register", authController.handleRegister);
+router.get("/user/username/", authController.checkExistedUsername);
+// router.get("/user/username/:username", authController.checkExistedUsername);
+router.get("/user/email/", authController.checkExistedEmail);
 module.exports = router;
