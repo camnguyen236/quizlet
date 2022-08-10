@@ -1,29 +1,34 @@
 const mongoose = require('mongoose');
+const findOrCreate = require('mongoose-findorcreate');
 
 const AccountSchema = new mongoose.Schema({
     username: {
         type: String,
-        required: true,
+        require: true,
         unique: true
     },
     password: {
         type: String,
-        required: true
     },
     email: {
         type: String,
-        required: true,
         unique: true
     },
     birthday: {
         type: String,
-        required: false
     },
     profilePicture: {
         type: String,
-        required: true,
         default: "./defaultProfilePic.jpg"
+    },
+    googleId: {
+        type: String
+    },
+    facebookId: {
+        type: String
     }
 });
+
+AccountSchema.plugin(findOrCreate);
 
 module.exports = mongoose.model("Account", AccountSchema);

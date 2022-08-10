@@ -11,7 +11,7 @@ function PageName(props) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-            const res = await axios.post("http://localhost:5000/api/auth/register", {
+            const res = await axios.post("http://localhost:5000/auth/register", {
                 username,
                 password,
                 email,
@@ -27,7 +27,7 @@ function PageName(props) {
     const handleChangeUsername = async (event) => {
         setErrorUsername(false);
         setUsername(event.target.value);
-        const url = "http://localhost:5000/api/auth/user/username/?username=" + event.target.value;
+        const url = "http://localhost:5000/auth/user/username/?username=" + event.target.value;
         await axios.get(url)
             .then((res) => {
                 if(res.data) setErrorUsername(true);
@@ -40,7 +40,7 @@ function PageName(props) {
     const handleChangeEmail = async (event) => {
         setErrorEmail(false);
         setEmail(event.target.value);
-        const url = "http://localhost:5000/api/auth/user/email/?email=" + event.target.value;
+        const url = "http://localhost:5000/auth/user/email/?email=" + event.target.value;
         await axios.get(url)
             .then((res) => {
                 if(res.data) setErrorEmail(true);
@@ -48,11 +48,21 @@ function PageName(props) {
             .catch((err) => {
                 console.log(err);
             });
+    };
+
+    const handleGoogleRegister = () => {
+        const url = "http://localhost:5000/auth/google/";
+        window.open(url);
+    };
+
+    const handleFacebookRegister = () => {
+        const url = "http://localhost:5000/auth/facebook/";
+        window.open(url);
     }
 
     return (
         <div>
-            <form onSubmit={handleSubmit}>
+            <form>
                 {errorUsername && <span>Username already exists</span>}
                 <input placeholder="username" type="text" name="username" onChange={handleChangeUsername}/>
                 {errorEmail && <span>Email already exists</span>}
@@ -64,8 +74,9 @@ function PageName(props) {
                     setBirthday(event.target.value);
                 }}/>
                 {error && <span>There's something wrong</span>}
-                <button type="submit">Register</button>
-                <button>Register with google</button>
+                <button type="submit" onClick={handleSubmit}>Register</button>
+                <button onClick={handleGoogleRegister}>Register with google</button>
+                <button onClick={handleFacebookRegister}>Register with facebook</button>
             </form>
         </div>
     );

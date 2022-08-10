@@ -1,11 +1,30 @@
-const accountController = require('./accountController')
+const accountController = require("./accountController")
 const bcrypt = require("bcrypt");
 const Account = require("../models/Account");
 
+require("dotenv").config();
+
+// const handleGoogleRegister = async (ggId, ggPhoto) => {
+//     try {
+//
+//         const newAccount = new Account({
+//             googleId: ggId,
+//             profilePicture: ggPhoto
+//         });
+//         //create new account to db
+//         await accountController.createNewAccount(newAccount);
+//         console.log("in handle regis" + newAccount);
+//     } catch (err) {
+//         console.log(err);
+//     }
+// }
+
 const handleRegister = async (req, res) => {
     try {
+        //hash the password
         const salt = await bcrypt.genSalt(10);
         const hashedPass = await bcrypt.hash(req.body.password, salt);
+
         const newAccount = new Account({
             username: req.body.username,
             password: hashedPass,
@@ -13,7 +32,10 @@ const handleRegister = async (req, res) => {
             birthday: req.body.birthday,
             profilePicture: req.body.profilePicture
         });
+
+        //create new account to db
         await accountController.createNewAccount(newAccount);
+        //if success send response true and status to FE
         res.status(200).send(true);
     } catch (err) {
         res.status(500).json(err);
@@ -23,7 +45,6 @@ const handleRegister = async (req, res) => {
 //false nếu username chưa có
 const checkExistedUsername = async (req, res) => {
     try {
-        // const check = await accountController.getAccountByProp("username", req.params.username);
         const check = await accountController.getAccountByProp("username", req.query.username);
         if (check) {
             res.send(true);
