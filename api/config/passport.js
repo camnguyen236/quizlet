@@ -23,30 +23,6 @@ module.exports = function(passport) {
         }
     ));
     
-    passport.use(new GoogleStrategy({
-        clientID: process.env.GOOGLE_CLIENT_ID,
-        clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-        callbackURL: "http://localhost:5000/api/auth/google/callback"
-      },
-      function(accessToken, refreshToken, profile, cb) {
-        Account.findOne({ googleId: profile.id }, function (err, user) {
-          return cb(err, user);
-        });
-      }
-    ));
-    
-    passport.use(new FacebookStrategy({
-        clientID: process.env.FACEBOOK_APP_ID,
-        clientSecret: process.env.FACEBOOK_APP_SECRET,
-        callbackURL: "http://localhost:5000/api/auth/facebook/callback"
-      },
-      function(accessToken, refreshToken, profile, cb) {
-        Account.findOne({ facebookId: profile.id }, function (err, user) {
-          return cb(err, user);
-        });
-      }
-    ));
-    
     passport.serializeUser(function (acc, done) {
         done(null, acc.id);
     });

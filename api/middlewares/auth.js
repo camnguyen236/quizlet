@@ -3,6 +3,6 @@ module.exports = {
         if(req.isAuthenticated()) {
             return next();
         }
-        res.redirect('/api/auth/login');
+        res.redirect('/auth/login');
     }
 }

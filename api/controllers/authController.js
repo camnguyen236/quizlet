@@ -7,8 +7,8 @@ class authController {
     handleLogin = () => {
         passport.authenticate('local', 
         { 
-            successRedirect: '/api/auth/main',
-            failureRedirect: '/api/auth/login'
+            successRedirect: '/auth/main',
+            failureRedirect: '/auth/login'
         })
     }
 
@@ -16,7 +16,7 @@ class authController {
     handleLogout = (req, res, next) => {
         req.logout(function(err) {
             if (err) { return next(err); }
-            res.redirect('/api/auth/login');
+            res.redirect('/auth/login');
         });
     }
 };

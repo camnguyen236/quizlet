@@ -10,29 +10,11 @@ router.get('/login', function (req, res, next) {
     res.render('login');
 });
 
-//Login with google
-router.get('/google', passport.authenticate('google', { scope: ['profile'] }));
-
-router.get('/google/callback', passport.authenticate('google',
-    {
-        successRedirect: '/api/auth/main',
-        failureRedirect: '/api/auth/login',
-    }));
-
-// Login with facebook
-router.get('/facebook', passport.authenticate('facebook'));
-
-router.get('/facebook/callback', passport.authenticate('facebook',
-    {
-        successRedirect: '/api/auth/main',
-        failureRedirect: '/api/auth/login',
-    }));
-
 // Login with username and password
 router.post('/login', passport.authenticate('local',
     {
-        successRedirect: '/api/auth/main',
-        failureRedirect: '/api/auth/login'
+        successRedirect: '/auth/main',
+        failureRedirect: '/auth/login'
     }));
 
 // Logout
