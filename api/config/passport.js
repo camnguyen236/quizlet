@@ -29,16 +29,6 @@ module.exports = function (passport) {
         }
     ));
 
-    passport.serializeUser(function (acc, done) {
-        done(null, acc.id);
-    });
-
-    passport.deserializeUser(function (id, done) {
-        Account.findById(id, (err, acc) => {
-            done(err, acc);
-        });
-    });
-
     passport.use(new GoogleStrategy({
         clientID: process.env.GOOGLE_CLIENT_ID,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
@@ -92,4 +82,14 @@ module.exports = function (passport) {
                 });
         }
     }));
+
+    passport.serializeUser(function (acc, done) {
+        done(null, acc.id);
+    });
+
+    passport.deserializeUser(function (id, done) {
+        Account.findById(id, (err, acc) => {
+            done(err, acc);
+        });
+    });
 }
