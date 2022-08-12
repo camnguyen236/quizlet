@@ -8,8 +8,7 @@ class authController {
         passport.authenticate('local', 
         { 
             successRedirect: '/api/auth/main',
-            failureRedirect: '/api/auth/login', 
-            // failureMessage: true
+            failureRedirect: '/api/auth/login'
         })
     }
 
