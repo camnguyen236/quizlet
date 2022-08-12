@@ -27,6 +27,12 @@ const AccountSchema = new mongoose.Schema({
         type: String,
         required: true,
         default: "./defaultProfilePic.jpg"
+    },
+    googleId: {
+        type: String
+    },
+    facebookId: {
+        type: String
     }
 });
 
