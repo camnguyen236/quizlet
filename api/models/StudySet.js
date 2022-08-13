@@ -8,11 +8,11 @@ const StudySetSchema = new mongoose.Schema({
     description: {
         type: String
     },
-    account: {
+    author: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Account'
     },
-    card: [
+    cards: [
         {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Card'

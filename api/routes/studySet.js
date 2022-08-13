@@ -7,4 +7,7 @@ router.post('/store', studySetController.addStudySet);
 // Get all study sets
 router.get('/', studySetController.getAllStudySets);
 
+// Get a study set
+router.get('/:id', studySetController.getAStudySet);
+
 module.exports = router;
