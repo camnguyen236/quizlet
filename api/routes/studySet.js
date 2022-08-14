@@ -10,4 +10,7 @@ router.get('/', studySetController.getAllStudySets);
 // Get a study set
 router.get('/:id', studySetController.getAStudySet);
 
+// Update a study set
+router.put('/:id', studySetController.UpdateStudySet);
+
 module.exports = router;
