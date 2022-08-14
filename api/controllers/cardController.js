@@ -1,5 +1,5 @@
 const Card = require('../models/Card');
-const StudySet = require('../models/StudySet')
+const StudySet = require('../models/StudySet');
 
 class cardController {
     // [POST] 
@@ -32,6 +32,28 @@ class cardController {
         try {
             const card = await Card.findById(req.params.id).populate('studySet');
             res.status(200).json(card);
+        } catch (err) {
+            res.status(500).json(err);
+        }
+    }
+
+    // [PUT] /:id
+    async UpdateCard(req, res, next) {
+        try {
+            await Card.updateOne({ _id: req.params.id }, req.body);
+            res.status(200).json('Updated successfully');
+        } catch (err) {
+            res.status(500).json(err);
+        }
+    }
+
+    // [DELETE] /:id
+    async DeleteCard(req, res, next) {
+        try {
+            await StudySet.updateMany({cards: req.params.id}, {$pull: {cards: req.params.id}});
+            await Card.deleteOne({ _id: req.params.id });
+            // res.redirect('back');
+            res.status(200).json('Deleted successfully');
         } catch (err) {
             res.status(500).json(err);
         }

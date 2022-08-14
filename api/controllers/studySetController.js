@@ -1,5 +1,6 @@
 const StudySet = require('../models/StudySet');
-const Account = require('../models/Account')
+const Card = require('../models/Card');
+const Account = require('../models/Account');
 
 class studySetController {
     // [POST] 
@@ -40,8 +41,22 @@ class studySetController {
     // [PUT] /:id
     async UpdateStudySet(req, res, next) {
         try {
+            await 
             await StudySet.updateOne({ _id: req.params.id }, req.body);
             res.status(200).json('Updated successfully');
+        } catch (err) {
+            res.status(500).json(err);
+        }
+    }
+
+    // [DELETE] /:id
+    async DeleteStudySet(req, res, next) {
+        try {
+            // await Account.updateMany({studySets: req.params.id}, {$pull: {studySets: req.params.id}});
+            await Card.deleteMany({ studySet: req.params.id });
+            await StudySet.deleteOne({ _id: req.params.id });
+            // res.redirect('back');
+            res.status(200).json('Deleted successfully');
         } catch (err) {
             res.status(500).json(err);
         }

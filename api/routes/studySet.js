@@ -13,4 +13,7 @@ router.get('/:id', studySetController.getAStudySet);
 // Update a study set
 router.put('/:id', studySetController.UpdateStudySet);
 
+// Delete study set
+router.delete('/:id', studySetController.DeleteStudySet);
+
 module.exports = router;
