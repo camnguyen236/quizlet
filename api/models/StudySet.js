@@ -8,7 +8,7 @@ const StudySetSchema = new mongoose.Schema({
     description: {
         type: String
     },
-    author: {
+    account: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Account'
     },

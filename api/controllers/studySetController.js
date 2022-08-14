@@ -7,9 +7,9 @@ class studySetController {
         try {
             const studySet = new StudySet(req.body);
             const save = await studySet.save();
-            // if (req.body.author) {
-            //     const author = await Account.findById(req.body.author);
-            //     await author.updateOne({ $push: { studySets: save._id}});
+            // if (req.body.account) {
+            //     const account = await Account.findById(req.body.account);
+            //     await account.updateOne({ $push: { studySets: save._id}});
             // }
             res.status(200).json(save);
         } catch (err) {
