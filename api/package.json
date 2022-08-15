@@ -28,6 +28,7 @@
     "rand-token": "^1.0.1"
   },
   "devDependencies": {
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "prettier": "2.7.1"
   }
 }
