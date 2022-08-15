@@ -1,0 +1,34 @@
+.btn-primary {
+    background-color: #4255ff;
+    color: #fff;
+    font-weight: 500;
+    border-radius: 5px;
+}
+
+.btn-primary--login {
+    background-color: transparent;
+    color: #586380;
+    border: none;
+}
+.btn-primary--login:hover {
+    cursor: pointer;
+    background-color: #f6f7fb;
+    color:#586380 ;
+    border: none;
+}
+
+.btn-primary--signup {
+    background-color: #ffcd1f;
+    color: var(--text-color);
+    border: none;
+}
+.btn-primary--signup:hover {
+    cursor: pointer;
+    background-color: #ffdc62;
+    color:var(--text-color);
+}
+
+.btn-signUpForm {
+    width: 570px;
+    height: 42px;
+}
