@@ -12,26 +12,21 @@ function PageName(props) {
 
    const handleSubmit = async (e) => {
       e.preventDefault();
-      const res = await axios
+      await axios
          .post('http://localhost:5000/auth/register', {
             username,
             password,
             email,
-            birthday,
+            birthday
+         })
+         .then(() => {
+            window.location.replace('/latest');
          })
          .catch((error) => {
+            console.log(error);
             setError(true);
          });
-      if (res.status === 200) {
-         window.location.replace('/latest');
-      }
    };
-
-   axios({
-      method: 'post',
-      url: 'https://jsonplaceholder.typicode.com/users',
-      data: { user },
-   });
 
    const handleChangeUsername = async (event) => {
       setErrorUsername(false);

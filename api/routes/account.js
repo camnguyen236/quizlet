@@ -10,4 +10,10 @@ router.delete('/delete', accountController.deleteAccount);
 ////// GET Account //////
 router.get('/find', accountController.getAccount);
 
+////// GET Achievements //////
+router.get('/find/achievement', accountController.getAchievements);
+
+////// UPDATE Achievements //////
+router.get('/update/achievement', accountController.updateAchievement);
+
 module.exports = router;
