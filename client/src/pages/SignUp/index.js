@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import styles from './SignUp.module.scss';
 import Buttonn from '~/components/Buttonn';
-import DateTime from '~/components/DateTime';
 import { DatePicker, Space } from 'antd';
 import axios from 'axios';
 import { CloseOutlined } from '@ant-design/icons';
@@ -126,16 +125,22 @@ function SignUp() {
                             <label htmlFor="birthday" className={cx('form-label')}>
                                 BIRTHDAY
                             </label>
+                            {/* <div className={cx('datetime')}> */}
                             <Space direction="vertical">
                                 <DatePicker
                                     onChange={(date, dateString) => {
                                         //setDetails({ ...details, birthday: dateString });
                                         setBirthdayy(dateString);
                                     }}
-                                    className={cx('datetime')}
                                     format={dateFormat}
+                                    style={{
+                                        border: '2px solid #303545',
+                                        borderRadius: '3px',
+                                    }}
+                                    className={cx('datetime')}
                                 />
                             </Space>
+                            {/* </div> */}
                             {/* <DateTime
                                 onChange={(date, dateString) => {
                                     setDetails({ ...details, birthday: dateString });
