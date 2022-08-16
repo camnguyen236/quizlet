@@ -64,7 +64,13 @@ function Header() {
                         {/* <button className={cx('btn-login')}>Login</button> */}
                         <Buttonn text="btn-primary btn-primary--login" content="Login"></Buttonn>
                     </div>
-                    <Buttonn text="btn-primary btn-primary--signup" content="Sign up"></Buttonn>
+                    <Buttonn
+                        text="btn-primary btn-primary--signup"
+                        content="Sign up"
+                        onClick={(e) => {
+                            window.location.replace('/signup');
+                        }}
+                    ></Buttonn>
                 </div>
             </div>
         </header>

@@ -1,63 +1,74 @@
 import classNames from 'classnames/bind';
 import { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import styles from './SignUp.module.scss';
 import Buttonn from '~/components/Buttonn';
 import DateTime from '~/components/DateTime';
 import { DatePicker, Space } from 'antd';
 import axios from 'axios';
-//import './validator.js';
-//import Validator from './validator';
+import { CloseOutlined } from '@ant-design/icons';
 
 const cx = classNames.bind(styles);
+
 function SignUp() {
-    //const [user, setUser] = useState({ birthday: '', email: '', username: '', password: '' });
-    const [error, setError] = useState([]);
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm();
 
-    const [details, setDetails] = useState({ birthday: '', email: '', username: '', password: '' });
-    const Signup = (details) => {
-        console.log(details);
-
-        if (details.email === '') {
-            setError((prev) => ['This is required!']);
-        } else error[0] = '';
-        if (details.username === '') setError((prev) => [...prev, 'This is required']);
-        else error[1] = '';
-        if (details.password === '') setError((prev) => [...prev, 'This is required!']);
-        else error[2] = '';
-    };
-    const submitHandler = async (e) => {
-        e.preventDefault();
-        Signup(details);
-        const res = await axios
-            .post('http://localhost:5000/auth/register', {
-                details,
-            })
-            .catch((error) => {
-                setError(true);
-            });
-        if (res.status === 200) {
-            window.location.replace('/home');
-        }
-    };
+    const [errorEmail, setErrorEmail] = useState(false);
+    const [errorUsername, setErrorUsername] = useState(false);
+    const [birthdayy, setBirthdayy] = useState('');
+    //const [details, setDetails] = useState({ birthday: '', email: '', username: '', password: '' });
 
     const dateFormat = 'DD-MM-YYYY';
+    const handleChangeEmail = async (event) => {
+        setErrorEmail(false);
+        const url = 'http://localhost:5000/auth/user/email/?email=' + event.target.value;
+        await axios
+            .get(url)
+            .then((res) => {
+                if (res.data) setErrorEmail(true);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
+    const handleChangeUsername = async (event) => {
+        setErrorUsername(false);
+        //setUsername(event.target.value);
+        const url = 'http://localhost:5000/auth/user/username/?username=' + event.target.value;
+        await axios
+            .get(url)
+            .then((res) => {
+                if (res.data) setErrorUsername(true);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
 
-    // const handleSignUp = async (e) => {
-    //     e.preventDefault();
-    //     const res = await axios
-    //         .post('http://localhost:5000/auth/register', {
-    //             username,
-    //             password,
-    //             email,
-    //             birthday,
-    //         })
-    //         .catch((error) => {
-    //             setError(true);
-    //         });
-    //     if (res.status === 200) {
-    //         window.location.replace('/home');
-    //     }
-    // };
+    const onSubmit = async (data) => {
+        console.log(data);
+        let birthday = birthdayy;
+        let email = data.email;
+        let username = data.username;
+        let password = data.password;
+        const res = await axios
+            .post('http://localhost:5000/auth/register', {
+                birthday,
+                email,
+                username,
+                password,
+            })
+            .catch((error) => {
+                //setError('true');
+            });
+        if (res.status === 200) {
+            window.location.replace('/latest');
+        }
+    };
 
     return (
         <div className={cx('wrapper')}>
@@ -66,6 +77,12 @@ function SignUp() {
                 <h2 className={cx('signUp-title')}>Quizlet</h2>
             </div>
             <div className={cx('signUp-wrapper')}>
+                <CloseOutlined
+                    className={cx('signUp-iconExit')}
+                    onClick={(e) => {
+                        window.location.replace('/');
+                    }}
+                />
                 <div className={cx('signUp-info')}>
                     <div className={cx('signUp-info__role')}>
                         <h3 className={cx('signUp-info__auth', { active: 'active' })}>SignUp</h3>
@@ -73,7 +90,7 @@ function SignUp() {
                     </div>
                     <div className={cx('signUp-info__connect')}>
                         <div className={cx('signUp-info__connect-google')}>
-                            <a className={cx('signUp-info__connect-link')} href="/">
+                            <a className={cx('signUp-info__connect-link')} href="http://localhost:5000/auth/google/">
                                 <span className={cx('signUp-info__connect-wrapper')}>
                                     <img
                                         className={cx('signUp-info__connect-img')}
@@ -84,7 +101,7 @@ function SignUp() {
                             </a>
                         </div>
                         <div className={cx('signUp-info__connect-facebook')}>
-                            <a className={cx('signUp-info__connect-link')} href="/">
+                            <a className={cx('signUp-info__connect-link')} href="http://localhost:5000/auth/facebook/">
                                 <span className={cx('signUp-info__connect-wrapper')}>
                                     <img
                                         className={cx('signUp-info__connect-img')}
@@ -104,7 +121,7 @@ function SignUp() {
                             <hr className={cx('divider-separatorLine')}></hr>
                         </div>
                     </div>
-                    <form onSubmit={submitHandler} className={cx('signUp-form')} id="register-form">
+                    <form onSubmit={handleSubmit(onSubmit)} className={cx('signUp-form')} id="register-form">
                         <div className={cx('form-group')}>
                             <label for="birthday" className={cx('form-label')}>
                                 BIRTHDAY
@@ -112,12 +129,10 @@ function SignUp() {
                             <Space direction="vertical">
                                 <DatePicker
                                     onChange={(date, dateString) => {
-                                        setDetails({ ...details, birthday: dateString });
-                                        //setDate(dateString);
+                                        //setDetails({ ...details, birthday: dateString });
+                                        setBirthdayy(dateString);
                                     }}
                                     className="datetime"
-                                    //value={details.birthday}
-                                    //defaultValue="1-2-2022"
                                     format={dateFormat}
                                 />
                             </Space>
@@ -138,10 +153,21 @@ function SignUp() {
                                 type="text"
                                 placeholder="VD: email@domain.com"
                                 className={cx('form-control')}
-                                onChange={(e) => setDetails({ ...details, email: e.target.value })}
-                                value={details.email}
+                                // onChange={(e) => setDetails({ ...details, email: e.target.value })}
+                                // value={details.email}
+                                {...register('email', {
+                                    required: true,
+                                    pattern: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+                                })}
+                                onChange={handleChangeEmail}
                             />
-                            <span className={cx('form-message')}>{error[0]}</span>
+                            {Object.keys(errors).length !== 0 && errors.email?.type === 'required' && (
+                                <span className={cx('form-message')}>Email is required!</span>
+                            )}
+                            {Object.keys(errors).length !== 0 && errors.email?.type === 'pattern' && (
+                                <span className={cx('form-message')}>Invalid email address!</span>
+                            )}
+                            {errorEmail && <span className={cx('form-message')}>This email is already exist!</span>}
                         </div>
                         <div className={cx('form-group')}>
                             <label for="username" className={cx('form-label')}>
@@ -154,11 +180,15 @@ function SignUp() {
                                 type="text"
                                 placeholder="VD: diemtran2806"
                                 className={cx('form-control')}
-                                onChange={(e) => setDetails({ ...details, username: e.target.value })}
-                                value={details.username}
+                                {...register('username', { required: true })}
+                                onChange={handleChangeUsername}
                             />
-                            {/* {error[1] !== '' ? <span className={cx('form-message')}>{error[1]}</span> : ''} */}
-                            <span className={cx('form-message')}>{error[1]}</span>
+                            {Object.keys(errors).length !== 0 && errors.username?.type === 'required' && (
+                                <span className={cx('form-message')}>Username is required!</span>
+                            )}
+                            {errorUsername && (
+                                <span className={cx('form-message')}>This username is already exist!</span>
+                            )}
                         </div>
                         <div className={cx('form-group')}>
                             <label for="password" className={cx('form-label')}>
@@ -171,12 +201,16 @@ function SignUp() {
                                 type="password"
                                 placeholder="......."
                                 className={cx('form-control')}
-                                onChange={(e) => setDetails({ ...details, password: e.target.value })}
-                                value={details.password}
+                                {...register('password', { required: true, minLength: 6 })}
                             />
-                            <span className={cx('form-message')}>{error[2]}</span>
+                            {Object.keys(errors).length !== 0 && errors.password?.type === 'required' && (
+                                <span className={cx('form-message')}>Password is required!</span>
+                            )}
+                            {Object.keys(errors).length !== 0 && errors.password?.type === 'minLength' && (
+                                <span className={cx('form-message')}>Password must be 6 characters long!</span>
+                            )}
                         </div>
-                        <div className={cx('textForm')}>
+                        {/* <div className={cx('textForm')}>
                             <span className={cx('checkbox-icon')}></span>
                             <span className={cx('textForm-detail')}>
                                 I accept
@@ -184,7 +218,7 @@ function SignUp() {
                                 and
                                 <a href="/"> privacy policy</a>
                             </span>
-                        </div>
+                        </div> */}
                         <div className={cx('btn-wraper')}>
                             {/* <Buttonn text="btn-primary btn-signUpForm" content="Sign Up"></Buttonn> */}
                             <button className={cx('btn-signup')}>Sign Up</button>

@@ -46,8 +46,15 @@
     padding: 16px;
     overflow-y: scroll;
     scrollbar-width: thin;
+    position: relative;
 }
 
+.signUp-iconExit {
+    position: absolute;
+    right: 16px;
+    font-size: 2rem;
+    cursor: pointer;
+}
 
 .signUp-info {
     //position: relative;

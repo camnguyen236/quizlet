@@ -1,24 +1,70 @@
-const router = require('express').Router();
-const Account = require("../models/Account");
+const router = require("express").Router();
+const authController = require("../controllers/authController");
+const passport = require("passport");
+const { isAuthenticated } = require("../middlewares/auth");
 
-//Register
+////////////// REGISTER ///////////////////////////////
 
-router.post("/register", async (req,res) => {
-    const newAccount = new Account({
-        username: req.body.username,
-        name: req.body.name,
-        password: req.body.password,
-        email: req.body.email,
-        birthday: req.body.birthday,
-        profilePicture: req.body.profilePicture
-    });
-    const account = await newAccount.save((err) => {
-        if(err) {
-            res.status(500).json(err);
-        } else {
-            res.status(200).json(account);
-        }
-    });
+router.post("/register", authController.handleRegister);
+
+//api to get user by username
+router.get("/user/username/", authController.checkExistedUsername);
+
+//api to get user by email
+router.get("/user/email/", authController.checkExistedEmail);
+
+router.get(
+  "/google",
+  passport.authenticate("google", {
+    scope: [
+      "https://www.googleapis.com/auth/userinfo.profile",
+      "https://www.googleapis.com/auth/userinfo.email",
+    ],
+  })
+);
+
+router.get(
+  "/google/callback",
+  passport.authenticate("google", {
+    successRedirect: "http://localhost:3000/latest",
+    failureRedirect: "http://localhost:5000/auth/google",
+  })
+);
+
+router.get(
+  "/facebook",
+  passport.authenticate("facebook", {
+    scope: ["public_profile", "email"],
+  })
+);
+
+router.get(
+  "/facebook/callback",
+  passport.authenticate("facebook", {
+    successRedirect: "http://localhost:3000/latest",
+    failureRedirect: "http://localhost:5000/auth/facebook",
+  })
+);
+
+////////////// LOGIN ///////////////////////
+
+router.get("/main", isAuthenticated, (req, res) => {
+  res.render("main");
 });
+router.get("/login", function (req, res, next) {
+  res.render("login");
+});
+
+// Login with username and password
+router.post(
+  "/login",
+  passport.authenticate("local", {
+    successRedirect: "/auth/main",
+    failureRedirect: "/auth/login",
+  })
+);
+
+// Logout
+router.get("/logout", authController.handleLogout);
 
 module.exports = router;
