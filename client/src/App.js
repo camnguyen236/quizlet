@@ -1,20 +1,40 @@
 import React from 'react';
-import {
-    Routes,
-    Route,
-} from "react-router-dom";
-import PageName from './pages/pageName/PageName'
-import Home from './pages/home/Home'
+//import 'antd/dist/antd.css';
+import { Fragment } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { publicRoutes } from '~/routes';
+
+import { DefaultLayout } from '~/components/Layouts';
 
 function App() {
-  return (
-      <div className="App">
-          <Routes>
-              <Route path="/" element={<PageName/>} />
-              <Route path="/latest" element={<Home/>} />
-          </Routes>
-      </div>
-  );
-}
+    return (
+        <Router>
+            <div className="App">
+                <Routes>
+                    {publicRoutes.map((route, index) => {
+                        const Page = route.component;
+                        let Layout = DefaultLayout;
+                        if (route.layout) {
+                            Layout = route.layout;
+                        } else if (route.layout === null) {
+                            Layout = Fragment;
+                        }
+                        return (
+                            <Route
+                                key={index}
+                                path={route.path}
+                                element={
+                                    <Layout>
+                                        <Page />
+                                    </Layout>
+                                }
+                            />
+                        );
+                    })}
+                </Routes>
+            </div>
+        </Router>
+    );
+                }
 
 export default App;
