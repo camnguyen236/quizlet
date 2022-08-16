@@ -1,7 +1,8 @@
 .wrapper {
     display: flex;
     width: 100%;
-    height: 625px;
+    //height: 625px;
+    height: 100vh;
 }
 
 #img {
@@ -12,7 +13,7 @@
 
 .signUp-img {
     position: relative;
-    height: 100%;
+    height: 100vh;
     width: 50%;
     background-image: url(https://assets.quizlet.com/a/j/dist/app/i/signup/QZ_Auth_Light.f0832112f8d66a6.png);
     background-position: 50%;
@@ -44,6 +45,7 @@
 .signUp-wrapper {
     flex: 50%;
     padding: 16px;
+    //height: 100vh;
     overflow-y: scroll;
     scrollbar-width: thin;
     position: relative;
@@ -211,6 +213,11 @@
     color: #f33a58;
 }
 
+.datetime {
+    border: 2px solid #303545;
+    width: 100%;
+    height: 42px;
+}
 
 .text {
     background-color: #3b4c9b;

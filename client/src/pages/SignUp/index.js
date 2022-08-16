@@ -123,7 +123,7 @@ function SignUp() {
                     </div>
                     <form onSubmit={handleSubmit(onSubmit)} className={cx('signUp-form')} id="register-form">
                         <div className={cx('form-group')}>
-                            <label for="birthday" className={cx('form-label')}>
+                            <label htmlFor="birthday" className={cx('form-label')}>
                                 BIRTHDAY
                             </label>
                             <Space direction="vertical">
@@ -132,7 +132,7 @@ function SignUp() {
                                         //setDetails({ ...details, birthday: dateString });
                                         setBirthdayy(dateString);
                                     }}
-                                    className="datetime"
+                                    className={cx('datetime')}
                                     format={dateFormat}
                                 />
                             </Space>
@@ -143,7 +143,7 @@ function SignUp() {
                             ></DateTime> */}
                         </div>
                         <div className={cx('form-group')}>
-                            <label for="email" className={cx('form-label')}>
+                            <label htmlFor="email" className={cx('form-label')}>
                                 EMAIL
                             </label>
                             <input
@@ -170,7 +170,7 @@ function SignUp() {
                             {errorEmail && <span className={cx('form-message')}>This email is already exist!</span>}
                         </div>
                         <div className={cx('form-group')}>
-                            <label for="username" className={cx('form-label')}>
+                            <label htmlFor="username" className={cx('form-label')}>
                                 USERNAME
                             </label>
                             <input
@@ -191,7 +191,7 @@ function SignUp() {
                             )}
                         </div>
                         <div className={cx('form-group')}>
-                            <label for="password" className={cx('form-label')}>
+                            <label htmlFor="password" className={cx('form-label')}>
                                 PASSWORD
                             </label>
                             <input
