@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import './Login.scss'
 import 'antd/dist/antd.min.css'
+import axios from 'axios';
 import {CloseOutlined} from '@ant-design/icons';
 import Input from '~/components/Input/Input';
 import Error from '~/components/Error/Error';
+import { message } from 'antd';
 
 function Login() {
     const[info,setInfo] = useState({
@@ -12,49 +14,91 @@ function Login() {
     })
     const[error,setError] = useState("")
     const [style,setStyle] = useState({display: "none"})
+
+    const showError = (message) => {
+        setError(message);
+        setStyle({display:"block"})
+    }
     const checkEmptyError = (info) =>{
         const keys = Object.keys(info);
-        for(var i = 0; i < keys.length; i++){
-            const length = info[keys[i]].trim().length;
+        for(let i = 0; i < keys.length; i++){
+            let length = info[keys[i]].trim().length;
             if(length === 0) {
-                setError(`Your ${keys[i]} cannot be blank`);
-                setStyle({display:"block"})
-                break;
+                let message = `Your ${keys[i]} cannot be blank`;
+                showError(message); 
+                return false;
                }
         }
+        return true;
     }
     const checkFormatError = (username) =>{
         const length = username.trim().length;
+        const user_regex = /[a-zA-Z0-9_]$/;
         if(length > 0 && length <= 3) {
-            setError('Your username is too short');
-            setStyle({display:"block"})
+            let message = 'Your username is too short';
+            showError(message); 
+            return false;
         }
+        if(!user_regex.test(username)) {
+            let message = 'YOUR USERNAME MAY ONLY CONTAIN LETTERS, NUMBERS AND UNDERSCORES';
+            showError(message); 
+            return false;
+        }
+        return true;
     }
    
-    const handleLogin = (e) => {
+    const handleLogin = async (e) => { 
         e.preventDefault();
-        checkEmptyError(info);
-        checkFormatError(info.username)
         console.log(info);
-
+        if(checkEmptyError(info))
+        {
+            if(checkFormatError(info.username))
+           {
+            const res = await axios
+            .post('http://localhost:5000/auth/login', {
+               username:info.username, 
+               password:info.password,
+            })
+            .then (() => {
+                alert("Success");
+                window.location.replace('/latest');         
+            })
+            .catch(() => {
+                showError("THE LOGIN DETAILS YOU PROVIDED ARE INCORRECT. PLEASE TRY AGAIN.");
+            });
+          
+           }
+        }
       }
     return (
         <div className="modal">
             <div className="modal__login">
-                <div className="modal__login__close">
-                <CloseOutlined />
-                </div>
-            
                 <div className="modal__login__body">
                     <div className="modal__login__body__image">
                         <h1>Dress casually, study seriously.</h1>
                         <h2>Quizlet</h2>
                     </div>
                     <div className="login-wrapper">
+                    <div className="modal__login__close">
+                         <CloseOutlined 
+                             onClick={(e) => {
+                             window.location.replace('/');
+                             }} />
+                     </div>
                     <div className="modal__login__body_info">
                         <div className="role__btn">
-                            <h3 className="role-signup">Sign up</h3>
-                            <h3 className="role-login">Login</h3>
+                            <h3 
+                            className="role-signup"
+                            onClick={(e) => {
+                                window.location.replace('/signup');
+                            }}
+                            >Sign up</h3>
+                            <h3 
+                            className="role-login active"
+                            onClick={(e) => {
+                                window.location.replace('/login');
+                            }}
+                            >Login</h3>
                         </div>
                     <form>
                         <div className="social-btn">
@@ -83,6 +127,7 @@ function Login() {
                             label="Username"
                             placeholder="Type your email address or username"
                             id="username"
+                            name="username"
                             />
                             <Input 
                              value={info.password}
@@ -91,6 +136,7 @@ function Login() {
                             label="Password"
                             placeholder="Type your password"
                             id="password"
+                            name="password"
                             />
                             <div className="forgotten-wrapper">
                                 <a className="forgotten-link" href='/'>Forgotten?</a>

@@ -12,7 +12,7 @@ import Login from '../pages/Login/Login';
 const publicRoutes = [
     { path: '/', component: Home },
     { path: '/signup', component: SignUp, layout: null },
-    { path: '/signup', component: Login, layout: null },
+    { path: '/login', component: Login, layout: null },
 
     // { path: '/upload', component: Upload, layout: HeaderOnly },
     // { path: '/search', component: Search, layout: null },

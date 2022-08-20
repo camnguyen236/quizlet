@@ -14,21 +14,23 @@
 
 }
 .modal__login__close {
-    font-size: 25px;
+    font-size: 20px;
     color: #000;
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 16px;
+    right: 32px;
+    cursor: pointer;
 }
 .modal__login__body {
     display: flex;
 }
 .login-wrapper{
     flex: 1;
-    margin: 16px 16px;
+    padding: 16px 16px;
+    overflow-y: scroll;
 }
 .modal__login__body__image {
- width: 850px;
+ width: 50%;
  height: 100vh;
  background-image: url("https://assets.quizlet.com/a/j/dist/app/i/signup/QZ_Auth_Light.f0832112f8d66a6.png");
  background-size: cover;
@@ -57,19 +59,24 @@
 .modal__login__body_info {
  margin: 28px auto auto;
  padding: 0 32px 64px;
- max-width: 550px;
+ max-width: 600px;
 }
 .role__btn {
- font-size: 16px;
+ font-size: 17.1px;
+ display: flex;
+ margin-bottom: 22px;
 }
 .role-signup{
-    display: inline-block;
-    margin-right: 32px;
-    font-weight: 700;
+    margin-right: 36px;
+    font-weight: 800;
+    color: #939bb4;
 }
 .role-login{
-    display: inline-block;
-    font-weight: 700;
+    font-weight: 800;
+}
+.active {
+    color: #373b4b;
+    border-bottom: 2px solid #ffcd1f;
 }
 .social-btn {
     
@@ -125,13 +132,13 @@ margin: 0;
 }
 .forgotten-link{
     text-decoration: none;
-    color:#3CCFCF;
+    color:#3CCFCF !important;
     font-size: 12px;
     font-weight: 700;
     margin-top: 8px;
     text-align: right;
     &:hover {
-        color:#FFCD1F;
+        color: #ffcd1f !important;;
     }
 }
 .service-privacy-wrapper{

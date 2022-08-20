@@ -76,16 +76,24 @@ function SignUp() {
                 <h2 className={cx('signUp-title')}>Quizlet</h2>
             </div>
             <div className={cx('signUp-wrapper')}>
-                <CloseOutlined
-                    className={cx('signUp-iconExit')}
-                    onClick={(e) => {
-                        window.location.replace('/');
-                    }}
-                />
+                <div className={cx('signUp-iconExit')}>
+                    <CloseOutlined
+                        onClick={(e) => {
+                            window.location.replace('/');
+                        }}
+                    />
+                </div>
                 <div className={cx('signUp-info')}>
                     <div className={cx('signUp-info__role')}>
-                        <h3 className={cx('signUp-info__auth', { active: 'active' })}>SignUp</h3>
-                        <h3 className={cx('signUp-info__auth')}>Login</h3>
+                        <h3 className={cx('signUp-info__auth', { active: 'active' })}>Sign up</h3>
+                        <h3
+                            className={cx('signUp-info__auth')}
+                            onClick={(e) => {
+                                window.location.replace('/login');
+                            }}
+                        >
+                            Login
+                        </h3>
                     </div>
                     <div className={cx('signUp-info__connect')}>
                         <div className={cx('signUp-info__connect-google')}>
@@ -95,7 +103,7 @@ function SignUp() {
                                         className={cx('signUp-info__connect-img')}
                                         src="https://www.google.com.vn/images/branding/googleg/1x/googleg_standard_color_128dp.png"
                                     />
-                                    <div className={cx('signUp-info__connect-label')}>Sign Up with Google</div>
+                                    <div className={cx('signUp-info__connect-label')}>Sign up with Google</div>
                                 </span>
                             </a>
                         </div>
@@ -106,7 +114,7 @@ function SignUp() {
                                         className={cx('signUp-info__connect-img')}
                                         src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg"
                                     />
-                                    <div className={cx('signUp-info__connect-label')}>Sign Up with Facebook</div>
+                                    <div className={cx('signUp-info__connect-label')}>Sign up with Facebook</div>
                                 </span>
                             </a>
                         </div>

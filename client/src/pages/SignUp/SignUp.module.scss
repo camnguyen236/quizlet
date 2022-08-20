@@ -54,16 +54,19 @@
 .signUp-iconExit {
     position: absolute;
     right: 16px;
+    top: 16px;
     font-size: 2rem;
     cursor: pointer;
+    color: #000;
 }
 
 .signUp-info {
     //position: relative;
-    margin-top: 28px;
+    margin: 28px auto auto;
     padding: 0 32px 64px;
     //display: flex;
     justify-content: left;
+    max-width: 600px;
 }
 
 .signUp-info__role {
@@ -76,13 +79,7 @@
     // + .signUp-info__role {
     //     margin-left: 36px;
     // }
-    &::after {
-        content: "";
-        position: absolute;
-        border: 2px solid yellow;
-        width: 25%;
-        top: 32px;
-    }
+    
 }
 
 .signUp-info__auth {
@@ -95,8 +92,8 @@
 
 .active {
     color: #373b4b;
+    border-bottom: 2px solid #ffcd1f;
 }
-
 //2 nút log in
 .signUp-info__connect {
    // position: ;
@@ -107,7 +104,7 @@
 .signUp-info__connect-google {
     width: 50%;
     border-radius: 5px;
-    border: 2px solid #d9dde8;
+    border: 1.5px solid #d9dde8;
     //text-align: center;
     margin-right: 2rem;
 }
@@ -195,7 +192,7 @@
     font-size: 1.4rem;
     //font-weight: 800;
     &:focus {
-        border-color: rgb(255, 230, 0);
+        border-color: #ffcd1f;
     }
 }
 
