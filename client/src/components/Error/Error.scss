@@ -1,0 +1,17 @@
+.error-message-wrapper{
+    border:1.5px solid #ff725b;
+    color: #ff725b;
+    width: 100%;
+    letter-spacing: 0.0625rem;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 10px 12px;
+}
+.error-message {
+    list-style-type: disc;
+    margin: 0 16px;
+    ::marker {
+        font-size: 14px;
+    }
+}

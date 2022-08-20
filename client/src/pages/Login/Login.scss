@@ -1,0 +1,177 @@
+.modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: aquamarine;
+}
+.modal__login {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: rgb(255, 255, 255);
+
+}
+.modal__login__close {
+    font-size: 25px;
+    color: #000;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.modal__login__body {
+    display: flex;
+}
+.login-wrapper{
+    flex: 1;
+    margin: 16px 16px;
+}
+.modal__login__body__image {
+ width: 850px;
+ height: 100vh;
+ background-image: url("https://assets.quizlet.com/a/j/dist/app/i/signup/QZ_Auth_Light.f0832112f8d66a6.png");
+ background-size: cover;
+ background-repeat: no-repeat;
+ background-position: 50%;
+ position: relative;
+}
+.modal__login__body__image h1 {
+    color: #3B4C9B;
+    font-size: 44px;
+    font-weight: 700;
+    width: 30px;
+    line-height: 4.5rem;
+    position: absolute;
+    top: 40px;
+    left: 40px;
+}
+.modal__login__body__image h2 {
+    color: #fff;
+    font-size: 25px;
+    font-weight: 700;
+    position: absolute;
+    bottom: 40px;
+    left: 40px;
+}
+.modal__login__body_info {
+ margin: 28px auto auto;
+ padding: 0 32px 64px;
+ max-width: 550px;
+}
+.role__btn {
+ font-size: 16px;
+}
+.role-signup{
+    display: inline-block;
+    margin-right: 32px;
+    font-weight: 700;
+}
+.role-login{
+    display: inline-block;
+    font-weight: 700;
+}
+.social-btn {
+    
+}
+.social-btn a{
+    text-decoration: none;
+    font-weight: 600;
+    color: #000;
+    font-size: 1.6rem;
+    padding: 2rem 2rem;
+    margin: 1rem 0;
+    border: 1.5px solid #D9DDE8;
+    border-radius: 5px;
+    background-color: #fff;
+    width: 100%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    &:hover {
+        color: #000;
+    }
+}
+.social-btn img {
+    width: 22px;
+    height: 22px;
+    
+}
+.social-google-btn,
+.social-facebook-btn{    
+margin: 0;
+}
+.social-btn-wrapper {
+   
+    
+}
+.btn-google-logo,
+.btn-facebook-logo{
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 22px 22px;
+}
+.btn-google-label,
+.btn-facebook-label{
+  
+}
+.login-input{
+    margin: 20px 0 10px;
+}
+.forgotten-wrapper{
+    text-align: right;
+}
+.forgotten-link{
+    text-decoration: none;
+    color:#3CCFCF;
+    font-size: 12px;
+    font-weight: 700;
+    margin-top: 8px;
+    text-align: right;
+    &:hover {
+        color:#FFCD1F;
+    }
+}
+.service-privacy-wrapper{
+    font-size: 12px;
+    font-weight: 300;
+    text-align: center;
+}
+.service-privacy-wrapper a {
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 600;
+    color: #586380;
+    &:hover {
+        color: #000;
+    }
+}
+
+.login-btn {
+    background-color: #3CCFCF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-weight: 700;
+    font-size: 1.6rem;
+    padding: 1.8rem 2rem;
+    margin: 0.7rem 0rem;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    letter-spacing: .0625rem;
+    &:hover {
+        background-color: #28a7a7;
+    }
+}
+
+.login-reminder{
+    font-size: 12px;
+    font-weight: 300;
+}
+
+.error-message-wrapper{
+ margin: 10px 0;
+}
