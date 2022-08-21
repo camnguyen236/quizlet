@@ -1,0 +1,40 @@
+@import url("https://use.typekit.net/hxd7vrv.css");
+
+.input-line {
+    align-self: flex-end;
+    box-shadow: 0 0.125rem 0 0 #303545;
+    display: block;
+    height: 0.25rem;
+}
+.input-label{
+    color: #939BB4;
+    display: block;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 8px;
+    display: flex;
+}
+.input{
+    border: none;
+    color:#1a1d28;
+    display: block;
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    margin-top: 5px;
+    font-family: josefin-sans,sans-serif;
+    margin-bottom: 5px;
+    width: 60%;
+    &:focus{
+        outline: none;
+    }
+    &:focus~.input-line{
+        box-shadow: 0 0.25rem 0 0 #ffcd1f;
+    }
+}
+::-webkit-input-placeholder {
+    color: #939BB4;
+    font-weight: 300;
+}

@@ -62,7 +62,13 @@ function Header() {
                     </Tippy>
                     <div className={cx('btn-wrap')}>
                         {/* <button className={cx('btn-login')}>Login</button> */}
-                        <Buttonn text="btn-primary btn-primary--login" content="Login"></Buttonn>
+                        <Buttonn
+                            text="btn-primary btn-primary--login"
+                            content="Login"
+                            onClick={(e) => {
+                                window.location.replace('/login');
+                            }}
+                        ></Buttonn>
                     </div>
                     <Buttonn
                         text="btn-primary btn-primary--signup"

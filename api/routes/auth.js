@@ -60,7 +60,8 @@ router.post(
   "/login",
   passport.authenticate("local", {
     successRedirect: "/auth/main",
-    failureRedirect: "/auth/login",
+    // failureFlash: true,
+    // failureRedirect: "/auth/login",
   })
 );
 
