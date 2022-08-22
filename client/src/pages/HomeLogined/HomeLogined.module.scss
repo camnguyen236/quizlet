@@ -1,0 +1,174 @@
+.wrapper {
+    width: 100%;
+    background-color: #f6f7fb;
+}
+
+.dashBoardPage {
+    padding: 40px 32px;
+    width: 100%;
+    //height: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: var(--default-width-container);
+}
+
+.dashBoardPage-main {
+    width: 100%;
+}
+
+.dashBoardPage-main__welcome {
+    clear: both;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: var(--default-width-container);
+    padding: 0 40px;
+    // background-color: aqua;
+    // display: flex;
+    //height: 100px;
+}
+
+.dashBoardPage-main__welcome-content {
+    display: flex;
+    padding: 32px;
+    margin: 0 0 32px;
+    border-radius: 10px;
+    background-color: #fff;
+    justify-content: space-between;
+    box-shadow: 2px 2px 2px 2px rgb(0 0 0 / 6%);
+    flex-wrap: wrap;
+    //position: relative;
+}
+
+.dashBoardPage-main__welcome-text {
+    flex: 1;
+}
+
+.dashBoardPage-main__welcome-text h3 {
+    font-size: 3.2rem;
+    font-weight: 700;
+}
+
+.text-item {
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-top: 24px;
+}
+
+.dashBoardPage-main__welcome-img {
+    align-items: center;
+    justify-content: right;
+    display: flex;
+    //height: 100%;
+    width: 100%;
+    flex: 1;
+    // position: absolute;
+    // right: 32px;
+    // top: -2px;
+    //left: 1000px;
+}
+
+.dashBoardPage-main__welcome-bgImg {
+    background-image: url(https://assets.quizlet.com/a/j/dist/app/i/student_onboarding/logged_in_homepage/checklist/student.edc0b9615a9bd20.jpg);
+    //height: 100%;
+    height: 202px;
+    width: 342px;
+    //width: 100%;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 10px;
+}
+
+//achivement
+.dashBoardPage-main {
+    padding: 0 40px;
+}
+
+.dashBoardPage-main-content {
+    margin-bottom: 48px;
+    //box-shadow: #4255ff;
+}
+
+.dashBoardPage-main-text {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+
+.dashBoardPage-main-text span {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+
+
+.dashBoardPage-main__achivement-card {
+    background-color: #fff;
+    border-radius: 10px;
+    width: 100%;
+    box-shadow: 2px 2px 2px 2px rgb(0 0 0 / 6%);
+}
+
+.dashBoardPage-main__achivement-medal {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-wrap: wrap;
+    padding: 0 24px;
+    gap: 64px 64px;
+}
+
+.medal-item {
+    width: 156px;
+    //display: flex;
+    align-items: center;
+    //justify-content: center;
+    padding: 24px;
+}
+
+.isActive .medal-item__icon{
+    background-image: url(https://assets.quizlet.com/a/j/dist/app/i/achievements/day-streak-badge.f93274ea21bb04e.svg);
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 100px;
+    width: 100px;
+    display: inline-block;
+}
+
+.medal-item__icon span {
+    font-size: 2rem;
+    font-weight: 700;
+    align-items: center;
+    display: inline-flex;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+}
+
+.medal-item__text {
+    font-size: 1.2rem;
+    color: #939bb4;
+}
+
+.isInactive .medal-item__icon {
+    background-image: url(https://assets.quizlet.com/a/j/dist/app/i/achievements/day-streak-badge-disabled.5e452b0f2ef9813.svg);
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 100px;
+    width: 100px;
+    display: inline-block;
+}
+
+.isInactive .medal-item__icon span {
+    color: #d9deeb ;
+}
+
+
+.dashBoardPage-main-text .achievement-link {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #4255ff;
+}

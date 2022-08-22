@@ -1,11 +1,14 @@
 import classNames from 'classnames/bind';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import styles from './SignUp.module.scss';
 import Buttonn from '~/components/Buttonn';
 import { DatePicker, Space } from 'antd';
 import axios from 'axios';
 import { CloseOutlined } from '@ant-design/icons';
+import { registerUser } from '~/redux/apiRequest';
 
 const cx = classNames.bind(styles);
 
@@ -20,6 +23,9 @@ function SignUp() {
     const [errorUsername, setErrorUsername] = useState(false);
     const [birthdayy, setBirthdayy] = useState('');
     //const [details, setDetails] = useState({ birthday: '', email: '', username: '', password: '' });
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const dateFormat = 'DD-MM-YYYY';
     const handleChangeEmail = async (event) => {
@@ -49,24 +55,31 @@ function SignUp() {
     };
 
     const onSubmit = async (data) => {
-        console.log(data);
-        let birthday = birthdayy;
-        let email = data.email;
-        let username = data.username;
-        let password = data.password;
-        const res = await axios
-            .post('http://localhost:5000/auth/register', {
-                birthday,
-                email,
-                username,
-                password,
-            })
-            .catch((error) => {
-                //setError('true');
-            });
-        if (res.status === 200) {
-            window.location.replace('/latest');
-        }
+        //console.log(data);
+        // let birthday = birthdayy;
+        // let email = data.email;
+        // let username = data.username;
+        // let password = data.password;
+        const newUser = {
+            birthday: birthdayy,
+            email: data.email,
+            username: data.username,
+            password: data.password,
+        };
+        // const res = await axios
+        //     .post('http://localhost:5000/auth/register', {
+        //         birthday,
+        //         email,
+        //         username,
+        //         password,
+        //     })
+        //     .catch((error) => {
+        //         //setError('true');
+        //     });
+        registerUser(newUser, dispatch, navigate);
+        // if (res.status === 200) {
+        //     window.location.replace('/latest');
+        // }
     };
 
     return (
@@ -79,7 +92,8 @@ function SignUp() {
                 <div className={cx('signUp-iconExit')}>
                     <CloseOutlined
                         onClick={(e) => {
-                            window.location.replace('/');
+                            //window.location.replace('/');
+                            navigate('/');
                         }}
                     />
                 </div>
@@ -89,8 +103,10 @@ function SignUp() {
                         <h3
                             className={cx('signUp-info__auth')}
                             onClick={(e) => {
-                                window.location.replace('/login');
+                                //window.location.replace('/login');
+                                navigate('/login');
                             }}
+                            //to="/login"
                         >
                             Login
                         </h3>

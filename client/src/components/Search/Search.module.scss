@@ -1,68 +1,16 @@
-.wrapper {
-    --search-height: 34px;
-    --search-border-radius:30px;
-    --search-button-width: 30px;
-    --search-top-spacer: 6px;
-    height: var(--default-layout-header-height);
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    box-shadow: 0px 1px 1px rgb(0 0 0 / 12%);
-}
-
-.inner {
-    height: 100%;
-    width: var( --default-layout-width);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.header-contentLeft {
-    height: 100%;
-    display: flex;
-    align-items: center;
-}
-
-.header-contentLeft__logo {
-    padding: 0px 12px;
-}
-
-.header-contentLeft__logo-img {
-    height: 100%;
-    width: 96px;
-}
-
-.header-contentLeft__menu {
-    height: 100%;
-    padding: 0 12px;
-}
-
-.header-contentLeft__menu-link {
-    height: 100%;
-    display: flex;
-    align-items: center;
-}
-
-.header-contentLeft__menu-span {
-    font-size: 1.6rem;
-    font-weight: 800;
-    color: var(--text-color);
-}
-
-.header-contentRight {
-    display: flex;
+.search, .search-result {
+    width: 280px;
 }
 
 .search {
     position: relative;
-    width: 280px;
     height: var(--search-height);
     padding-left: 16px;
     border-radius: var(--search-border-radius);
     background-color: rgba(22,24,35,0.06);
     display: flex;
     border: 1.5px solid transparent;
+    align-items: center;
 
     input {
         flex: 1;
@@ -70,6 +18,7 @@
         height: 100%;
         color: var(--black);
         font-size: 1.4rem;
+        //font-weight: 600;
         border: none;
         outline: none;
         background-color: transparent;
@@ -84,7 +33,7 @@
         height: calc(var(--search-height) - var(--search-top-spacer) * 2);
         width: 1px;
         background-color: rgba(22,24,35,0.12);
-        top: var(--search-top-spacer);
+        //top: var(--search-top-spacer);
         //bottom: calc(var(--search-top-spacer)/2);
         right: var(--search-button-width); //ddeer bang casi nut nam ben canh cai nut
     }
@@ -96,15 +45,16 @@
     position: absolute;
     right: calc(var(--search-button-width) + 8px); //ddeer nam ben canh cai nut
     top: 50%;
-    transform: translateY(-50%); //ded can giua theo chieu doc
+    transform: translateY(-42%); //ded can giua theo chieu doc
     color: rgba(22,24,35,0.34);
+    cursor: pointer;
 }
 .search-btn {
     width: var(--search-button-width);
     height: 100%;
     border-top-right-radius: var(--search-border-radius);
     border-bottom-right-radius: var(--search-border-radius);
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     color: rgba(22,24,35,0.34);
 
     &:hover {
@@ -116,19 +66,10 @@
     }
 }
 
-.btn-wrap {
-    height: var(--search-height);
-    display: flex;
-    align-items: center;
-    background-color: #fff;
-    padding: 0 24px;
-}
-
-.btn-login {
-    padding: 8px 12px;
-    background-color: transparent;
-    &:hover {
-        cursor: pointer;
-        background-color: #f6f7fb;
-    }
+.search-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    padding: 9px;
+    color: rgba(22,24,35,0.5);
+    padding-bottom: 0;
 }

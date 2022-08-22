@@ -1,8 +1,9 @@
 //Layouts
-// import { HeaderOnly } from '~/components/Layouts'; //nếu tạo mới layout thì import ở đây để dùng ở dứi
+import { HeaderOnly } from '~/components/Layouts'; //nếu tạo mới layout thì import ở đây để dùng ở dứi
 
 //pages
 import Home from '~/pages/Home';
+import HomeLogined from '~/pages/HomeLogined';
 import SignUp from '~/pages/SignUp';
 import Login from '../pages/Login/Login';
 // import Following from '~/pages/Following';
@@ -11,6 +12,7 @@ import Login from '../pages/Login/Login';
 
 const publicRoutes = [
     { path: '/', component: Home },
+    { path: '/latest', component: HomeLogined, layout: HeaderOnly },
     { path: '/signup', component: SignUp, layout: null },
     { path: '/login', component: Login, layout: null },
 
