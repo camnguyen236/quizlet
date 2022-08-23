@@ -41,7 +41,6 @@ class studySetController {
     // [PUT] /:id
     async UpdateStudySet(req, res, next) {
         try {
-            await 
             await StudySet.updateOne({ _id: req.params.id }, req.body);
             res.status(200).json('Updated successfully');
         } catch (err) {
