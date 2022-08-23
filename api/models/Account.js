@@ -26,6 +26,7 @@ const AccountSchema = new mongoose.Schema({
    facebookId: {
       type: String,
    },
+   refreshToken: [String],
    achievement: {
       month: {
          type: Number,

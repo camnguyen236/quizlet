@@ -21,6 +21,7 @@ class cardController {
     async getAllCards(req, res, next) {
         try {
             const allCards = await Card.find();
+            console.log(req.session)
             res.status(200).json(allCards);
         } catch (err) {
             res.status(500).json(err);

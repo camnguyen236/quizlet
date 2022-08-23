@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 const cors = require('cors');
 const passport = require('passport');
 const session = require('express-session');
+const cookieParser = require("cookie-parser");
 const morgan = require('morgan');
 const db = require('./config/db');
 const route = require('./routes');
@@ -21,10 +22,12 @@ app.use(
 app.use(morgan('combined'));
 app.set('view engine', 'ejs');
 app.use(cors());
+app.use(cookieParser());
 
 app.use(session({
     secret: "quizlet secret",
-    saveUninitialized: false,
+    saveUninitialized: true,
+    // cookie: { maxAge: 1000 },
     resave: false
 }))
 
