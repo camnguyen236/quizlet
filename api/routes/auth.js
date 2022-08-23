@@ -24,21 +24,7 @@ router.get(
 );
 
 router.get(
-  "/google/callback",
-  function (req, res, next) {
-    passport.authenticate(
-      "google",
-      {
-        // successRedirect: "http://localhost:3000/latest",
-        successMessage: 'Success login',
-        failureRedirect: "http://localhost:5000/auth/google",
-      },
-      (result, user) => {
-        // res.redirect('http://localhost:5000/auth/main');
-        next(user);
-      }
-    )(req, res, next);
-  }, authController.handleLogin
+  "/google/callback", authController.handleLoginWithGoogle
 );
 
 router.get(
@@ -49,16 +35,12 @@ router.get(
 );
 
 router.get(
-  "/facebook/callback",
-  passport.authenticate("facebook", {
-    successRedirect: "http://localhost:3000/latest",
-    failureRedirect: "http://localhost:5000/auth/facebook",
-  })
+  "/facebook/callback", authController.handleLoginWithFacebook
 );
 
 ////////////// LOGIN ///////////////////////
 
-router.get("/main", isAuthenticated, (req, res) => {
+router.get("/main", (req, res) => {
   res.render("main");
 });
 router.get("/login", function (req, res, next) {
@@ -67,11 +49,7 @@ router.get("/login", function (req, res, next) {
 
 // Login with username and password
 router.post(
-  "/login",
-  passport.authenticate("local", {
-    successRedirect: "/auth/main",
-    // failureRedirect: '/auth/login',
-  })
+  "/login", authController.handleLogin
 );
 
 // Logout
