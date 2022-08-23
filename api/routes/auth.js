@@ -60,7 +60,7 @@ router.post(
    '/login',
    passport.authenticate('local', {
       successRedirect: '/auth/main',
-      failureRedirect: '/auth/login',
+      // failureRedirect: '/auth/login',
    })
 );
 
