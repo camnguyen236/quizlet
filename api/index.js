@@ -26,8 +26,7 @@ app.use(cookieParser());
 
 app.use(session({
     secret: "quizlet secret",
-    saveUninitialized: true,
-    // cookie: { maxAge: 1000 },
+    saveUninitialized: false,
     resave: false
 }))
 
