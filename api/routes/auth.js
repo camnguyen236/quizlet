@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const authController = require("../controllers/authController");
 const passport = require("passport");
-const { isAuthenticated } = require("../middlewares/auth");
+const { verifyJWT } = require("../middlewares/auth");
 
 ////////////// REGISTER ///////////////////////////////
 

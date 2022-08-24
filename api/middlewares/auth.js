@@ -1,3 +1,5 @@
+const jwt = require('jsonwebtoken');
+
 module.exports = {
    isAuthenticated: function (req, res, next) {
       if (req.isAuthenticated()) {

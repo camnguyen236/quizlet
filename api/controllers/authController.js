@@ -20,7 +20,7 @@ class authController {
                process.env.REFRESH_TOKEN_SECRET,
                { expiresIn: '1d' }
             );
-            
+            console.log(user._id)
             let newRefreshTokenArray = 
                !cookies?.refreshToken
                ? user.refreshToken
@@ -54,8 +54,8 @@ class authController {
                secure: false,
                sameSite: "strict"
             });
-            // res.status(200).json({ accessToken });
-            res.redirect('http://localhost:5000/auth/main');
+            res.status(200).json({ accessToken });
+            // res.redirect('http://localhost:5000/auth/main');
          }
       } catch (error) {
          res.status(500).json(error);
@@ -126,8 +126,8 @@ class authController {
             secure: false,
             sameSite: "strict"
          });
-         // return res.sendStatus(204);
-         res.redirect('http://localhost:5000/auth/login');
+         return res.sendStatus(204);
+         // res.redirect('http://localhost:5000/auth/login');
       } catch (error) {
          res.status(500).json(error);
       }
