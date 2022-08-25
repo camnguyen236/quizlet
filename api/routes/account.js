@@ -1,36 +1,45 @@
-const router = require("express").Router();
-const accountController = require("../controllers/accountController");
-const { isAuthenticated } = require("../middlewares/auth");
+const router = require('express').Router();
+const accountController = require('../controllers/accountController');
+const { verifyJWT, validateRequest } = require('../middlewares/auth');
 
 ////// UPDATE Account //////
-router.put("/:id", isAuthenticated, accountController.updateAccount);
+router.put(
+    '/:username',
+    verifyJWT,
+    validateRequest,
+    accountController.updateAccount
+);
 
 ////// DELETE Account //////
-router.delete("/:id", isAuthenticated, accountController.deleteAccount);
+router.delete(
+    '/:username',
+    verifyJWT,
+    validateRequest,
+    accountController.deleteAccount
+);
 
 ////// GET Account //////
-router.get("/:id", isAuthenticated, accountController.getAccount);
+router.get(
+    '/:username',
+    verifyJWT,
+    validateRequest,
+    accountController.getAccount
+);
 
 ////// GET Achievements //////
 router.get(
-  "/:id/achievement",
-  isAuthenticated,
-  accountController.getAchievements
+    '/:username/achievement',
+    verifyJWT,
+    validateRequest,
+    accountController.getAchievements
 );
 
 ////// UPDATE Achievements //////
-router.get(
-  "/:id/achievement",
-  isAuthenticated,
-  accountController.updateAchievement
+router.put(
+    '/:username/achievement',
+    verifyJWT,
+    validateRequest,
+    accountController.updateAchievement
 );
-
-router.get("/profile", isAuthenticated, (req, res, next) => {
-  //here it is
-  const user = req.user;
-
-  //you probably also want to pass this to your view
-  res.send(user);
-});
 
 module.exports = router;
