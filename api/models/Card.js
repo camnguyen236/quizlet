@@ -3,11 +3,11 @@ const mongoose = require('mongoose');
 const CardSchema = new mongoose.Schema({
     term: {
         type: String,
-        require: true
+        required: true
     },
     definition: {
         type: String,
-        require: true
+        required: true
     },
     image: {
         type: String
@@ -18,4 +18,4 @@ const CardSchema = new mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model("Card", CardSchema);
+module.exports = mongoose.model('Card', CardSchema);

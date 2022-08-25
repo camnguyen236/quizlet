@@ -23,9 +23,7 @@ router.get(
   })
 );
 
-router.get(
-  "/google/callback", authController.handleLoginWithGoogle
-);
+router.get("/google/callback", authController.handleLoginWithGoogle);
 
 router.get(
   "/facebook",
@@ -34,9 +32,7 @@ router.get(
   })
 );
 
-router.get(
-  "/facebook/callback", authController.handleLoginWithFacebook
-);
+router.get("/facebook/callback", authController.handleLoginWithFacebook);
 
 ////////////// LOGIN ///////////////////////
 
@@ -48,9 +44,7 @@ router.get("/login", function (req, res, next) {
 });
 
 // Login with username and password
-router.post(
-  "/login", authController.handleLogin
-);
+router.post("/login", authController.handleLogin);
 
 // Logout
 router.get("/logout", authController.handleLogout);

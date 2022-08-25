@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const StudySetSchema = new mongoose.Schema({
     title: {
         type: String,
-        require: true
+        required: true
     },
     description: {
         type: String
@@ -20,4 +20,4 @@ const StudySetSchema = new mongoose.Schema({
     ]
 });
 
-module.exports = mongoose.model("StudySet", StudySetSchema);
+module.exports = mongoose.model('StudySet', StudySetSchema);
