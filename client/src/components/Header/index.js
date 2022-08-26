@@ -5,7 +5,7 @@ import classNames from 'classnames/bind';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { BellOutlined, ProfileOutlined, SettingOutlined, LogoutOutlined } from '@ant-design/icons';
-import styles from './Header.module.scss';
+import styles from '~/components/Header/Header.module.scss';
 import Buttonn from '~/components/Buttonn';
 import Menu from '~/components/Popper/Menu';
 import Image from '~/components/Image';
