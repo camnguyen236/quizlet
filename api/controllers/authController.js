@@ -20,7 +20,6 @@ class authController {
                process.env.REFRESH_TOKEN_SECRET,
                { expiresIn: '1d' }
             );
-            console.log(user._id)
             let newRefreshTokenArray = 
                !cookies?.refreshToken
                ? user.refreshToken

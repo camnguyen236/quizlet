@@ -1,8 +1,9 @@
-const bcrypt = require('bcrypt');
-const Account = require('../models/Account');
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const Account = require("../models/Account");
 
 class accountController {
-    // [PUT] /accounts/id
+    // [PUT] /accounts/username
     updateAccount = async (req, res) => {
         //if update password then hash it
         if (req.body.password) {
@@ -30,7 +31,7 @@ class accountController {
         }
     };
 
-    // [DELETE] /accounts/id
+    // [DELETE] /accounts/username
     deleteAccount = async (req, res) => {
         try {
             await Account.findOneAndDelete({ username: req.params.username });
@@ -40,25 +41,48 @@ class accountController {
         }
     };
 
-    // [GET] /accounts/username
-    getAccount = async (req, res) => {
-        try {
-            const account = await Account.findOne({
-                username: req.params.username
-            });
-            const { password, achievement, studySet, refreshToken, ...others } =
-                account._doc;
-            res.status(200).json({
-                status: 'Success',
-                data: others
-            });
-        } catch (err) {
-            res.status(500).json({
-                status: 'Fail',
-                message: err
-            });
+  // [GET] /accounts/username
+  getAccount = async (req, res) => {
+    try {
+        const account = await Account.findOne({
+            username: req.params.username
+        });
+        const { password, achievement, studySet, refreshToken, ...others } =
+            account._doc;
+        res.status(200).json({
+            status: 'Success',
+            data: others
+        });
+    } catch (err) {
+        res.status(500).json({
+            status: 'Fail',
+            message: err
+        });
+    }
+};
+
+  // [GET] /accounts/
+  getAccountByAccToken = (req, res) => {
+    try {
+      const authHeader = req.headers.authorization || req.headers.Authorization;
+      if (!authHeader?.startsWith("Bearer ")) return res.sendStatus(401);
+      const token = authHeader.split(" ")[1];
+      jwt.verify(
+        token,
+        process.env.ACCESS_TOKEN_SECRET,
+        async (err, decoded) => {
+          if (err) return res.sendStatus(403); // invalid token
+          const user = await Account.findOne({
+            username: decoded.username,
+          }).exec();
+          const { password, achievement, studySet, refreshToken, ...others } = user._doc;
+          res.status(200).json(others);
         }
-    };
+      );
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  };
 
     //thật là thắc mắc??? tại sao truyền [prop: val] vào findOne không được?
     // truyền condition = {prop: val} cũng k đc
