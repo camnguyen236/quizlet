@@ -7,6 +7,10 @@ import HomeLogined from '~/pages/HomeLogined';
 import SignUp from '~/pages/SignUp';
 import Login from '../pages/Login/Login';
 import SearchPage from '~/pages/SearchPage';
+import ResetPwd1 from '../pages/ResetPwd1/index';
+import ResetPwd2 from '../pages/ResetPwd2/index';
+import ResetPwd3 from '../pages/ResetPwd3/index';
+import CreateStudySet from '~/pages/CreateStudySet/index';
 // import Following from '~/pages/Following';
 // import Upload from '~/pages/Upload';
 // import Search from '~/pages/Search';
@@ -17,6 +21,10 @@ const publicRoutes = [
     { path: '/latest', component: HomeLogined, layout: HeaderOnly },
     { path: '/signup', component: SignUp, layout: null },
     { path: '/login', component: Login, layout: null },
+    { path: '/forgotten', component: ResetPwd1 },
+    { path: '/forgotten/password', component: ResetPwd2 },
+    { path: '/forgotten/password/changepwd', component: ResetPwd3 },
+    { path: '/latest/create-set', component: CreateStudySet },
 
     // { path: '/upload', component: Upload, layout: HeaderOnly },
     // { path: '/search', component: Search, layout: null },

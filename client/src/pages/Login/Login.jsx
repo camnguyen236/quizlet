@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 import './Login.scss'
-import 'antd/dist/antd.min.css'
-import axios from 'axios';
+import 'antd/dist/antd.min.css';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import {CloseOutlined} from '@ant-design/icons';
 import Input from '~/components/Input/Input';
 import Error from '~/components/Error/Error';
-import { message } from 'antd';
 import { loginUser } from '~/redux/apiRequest';
 
 function Login() {
@@ -144,7 +142,7 @@ function Login() {
                             name="password"
                             />
                             <div className="forgotten-wrapper">
-                                <a className="forgotten-link" href='/'>Forgotten?</a>
+                                <a className="forgotten-link" href='/forgotten'>Forgotten?</a>
                             </div>
                             <div className='service-privacy-wrapper'>
                             By selecting Log in, you accept Quizlet's

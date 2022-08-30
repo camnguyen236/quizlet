@@ -1,0 +1,62 @@
+.DefaultLayout_container__eW9q2 {
+    background-color: red;
+    position: relative;
+}
+.resetPwd-wrapper{
+width: 100%;
+height: 100vh;
+background-color: #f6f7fb;
+position: relative;
+ margin: 0 auto;
+ padding: 0 16px;
+
+}
+.resetPwd-container{
+    margin: 0 auto;
+    max-width: 600px;
+    padding: 64px 0 64px
+}
+.resetPwd-title {
+    font-size: 38px;
+    font-weight: 700;
+    color: #303545;
+    margin-bottom: 16px;
+}
+.resetPwd-form p {
+    font-size: 16px;
+    font-weight: 300;
+    color: #303545;
+    margin: 16px 0;
+}
+.resetPwd-form a {
+    font-size: 16px;
+    font-weight: 300;
+    color: #4257b2 !important;
+    margin: 16px 0;
+}
+.resetPwd-background {
+    position: absolute;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.img_1 {
+    background-image: url(https://assets.quizlet.com/a/j/dist/app/i/homepage/decoration-a.b43c15d8e73f166.png);
+    left: 0;
+    top: 0;
+    width: 100px;
+    height: 200px;
+}
+.img_2 {
+    background-image: url(https://assets.quizlet.com/a/j/dist/app/i/homepage/decoration-c.df891727a39ef4d.png);
+    left: 0;
+    top: 700px;
+    width: 150px;
+    height: 200px;
+}
+.img_3 {
+    background-image: url(https://assets.quizlet.com/a/j/dist/app/i/homepage/decoration-b.ff9e11513b6870e.png);
+    right: 0;
+    top: 50px;
+    width: 100px;
+    height: 300px;
+}

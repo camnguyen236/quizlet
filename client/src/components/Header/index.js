@@ -53,7 +53,13 @@ function Header() {
                             <span className={cx('header-contentLeft__menu-span')}>Home</span>
                         </a>
                     </div>
-                    <Buttonn text="btn-primary" content="Create"></Buttonn>
+                    <Buttonn
+                        text="btn-primary"
+                        content="Create"
+                        onClick={(e) => {
+                            window.location.replace('/latest/create-set');
+                        }}
+                    ></Buttonn>
                 </div>
                 <div className={cx('header-contentRight')}>
                     <Search />

@@ -4,7 +4,6 @@ import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import styles from './SignUp.module.scss';
-import Buttonn from '~/components/Buttonn';
 import { DatePicker, Space } from 'antd';
 import axios from 'axios';
 import { CloseOutlined } from '@ant-design/icons';
