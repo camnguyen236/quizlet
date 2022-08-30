@@ -9,6 +9,7 @@ import { DatePicker, Space } from 'antd';
 import axios from 'axios';
 import { CloseOutlined } from '@ant-design/icons';
 import { registerUser } from '~/redux/apiRequest';
+import { registerGoogle } from '~/redux/apiRequest';
 
 const cx = classNames.bind(styles);
 
@@ -28,6 +29,7 @@ function SignUp() {
     const navigate = useNavigate();
 
     const dateFormat = 'DD-MM-YYYY';
+
     const handleChangeEmail = async (event) => {
         setErrorEmail(false);
         const url = 'http://localhost:5000/auth/user/email/?email=' + event.target.value;
@@ -54,12 +56,20 @@ function SignUp() {
             });
     };
 
+    const handleSignUpWithGoogle = async (e) => {
+        const res = await axios
+            .get('http://localhost:5000/auth/google')
+            .then(() => {
+                window.location.replace('/latest');
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+        // if (res.status === 200) {
+        //     window.location.replace('/latest');
+        // }
+    };
     const onSubmit = async (data) => {
-        //console.log(data);
-        // let birthday = birthdayy;
-        // let email = data.email;
-        // let username = data.username;
-        // let password = data.password;
         const newUser = {
             birthday: birthdayy,
             email: data.email,
@@ -113,7 +123,7 @@ function SignUp() {
                     </div>
                     <div className={cx('signUp-info__connect')}>
                         <div className={cx('signUp-info__connect-google')}>
-                            <a className={cx('signUp-info__connect-link')} href="http://localhost:5000/auth/google/">
+                            <a onClick={handleSignUpWithGoogle} className={cx('signUp-info__connect-link')}>
                                 <span className={cx('signUp-info__connect-wrapper')}>
                                     <img
                                         className={cx('signUp-info__connect-img')}

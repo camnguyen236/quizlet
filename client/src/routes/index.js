@@ -6,12 +6,14 @@ import Home from '~/pages/Home';
 import HomeLogined from '~/pages/HomeLogined';
 import SignUp from '~/pages/SignUp';
 import Login from '../pages/Login/Login';
+import SearchPage from '~/pages/SearchPage';
 // import Following from '~/pages/Following';
 // import Upload from '~/pages/Upload';
 // import Search from '~/pages/Search';
 
 const publicRoutes = [
     { path: '/', component: Home },
+    { path: '/search', component: SearchPage },
     { path: '/latest', component: HomeLogined, layout: HeaderOnly },
     { path: '/signup', component: SignUp, layout: null },
     { path: '/login', component: Login, layout: null },
