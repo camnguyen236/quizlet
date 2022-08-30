@@ -25,8 +25,8 @@ router.get(
 
 ////// GET Account by accessToken //////
 router.get(
-  '/',
-  accountController.getAccountByAccToken
+    '/',
+    accountController.getAccountByAccToken
 );
 
 ////// GET Achievements //////

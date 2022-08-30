@@ -8,10 +8,10 @@ class studySetController {
         try {
             const studySet = new StudySet(req.body);
             const save = await studySet.save();
-            // if (req.body.account) {
-            //     const account = await Account.findById(req.body.account);
-            //     await account.updateOne({ $push: { studySets: save._id}});
-            // }
+            if (req.body.account) {
+                const account = await Account.findById(req.body.account);
+                await account.updateOne({ $push: { studySets: save._id}});
+            }
             res.status(200).json(save);
         } catch (err) {
             res.status(500).json(err);
@@ -51,7 +51,7 @@ class studySetController {
     // [DELETE] /:id
     async DeleteStudySet(req, res, next) {
         try {
-            // await Account.updateMany({studySets: req.params.id}, {$pull: {studySets: req.params.id}});
+            await Account.updateMany({studySets: req.params.id}, {$pull: {studySets: req.params.id}});
             await Card.deleteMany({ studySet: req.params.id });
             await StudySet.deleteOne({ _id: req.params.id });
             // res.redirect('back');

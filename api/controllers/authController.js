@@ -3,6 +3,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const accountController = require("./accountController");
 const passport = require("passport");
+const { clearConfigCache } = require('prettier');
 
 class authController {
   createJWTs = async (req, res, user) => {
@@ -184,25 +185,45 @@ class authController {
     }
   };
 
-  //Return true if EMAIL existed
-  //Return false if EMAIL is new
-  checkExistedEmail = async (req, res) => {
-    try {
-      const check = await accountController.getAccountByProp(
-        "email",
-        req.query.email
-      );
-      if (check) {
-        res.send(true);
-        return true;
-      } else {
-        res.send(false);
-        return false;
+   //Return true if EMAIL existed
+   //Return false if EMAIL is new
+   checkExistedEmail = async (req, res) => {
+      try {
+         const check = await accountController.getAccountByProp(
+            'email',
+            req.query.email
+         );
+         if (check) {
+            res.send(true);
+            return true;
+         } else {
+            res.send(false);
+            return false;
+         }
+      } catch (err) {
+         res.status(500).json(err);
       }
-    } catch (err) {
-      res.status(500).json(err);
-    }
-  };
+   }; 
+
+    // [GET] /auth/:usernameOrEmail
+   checkExistedUsernameOrEmail = async (req, res) => {
+      try {
+         const account = await Account.findOne({
+            $or: [{ 'username': req.params.usernameOrEmail }, { 'email': req.params.usernameOrEmail }]
+         });
+         const { email, ...others } = account;
+         console.log(account);
+         res.status(200).json({
+            status: 'Success',
+            data: email
+         });
+      } catch (err) {
+         res.status(500).json({
+            status: 'Fail',
+            message: err
+         });
+      }
+   };
 }
 
 module.exports = new authController();
