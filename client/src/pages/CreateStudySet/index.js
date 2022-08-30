@@ -1,6 +1,7 @@
 import Input from '~/components/Input/Input';
 import classNames from 'classnames/bind';
 import styles from './CreateStudySet.module.scss';
+import TermRow from '~/components/TermRow/TermRow';
 
 const cx = classNames.bind(styles);
 function CreateStudySet() {
@@ -43,9 +44,21 @@ function CreateStudySet() {
                 <div className={cx('UIContainer')}>
                     <div className={cx('create-set-permissions')}>
                         <div className={cx('permissions-wrapper')}>
-                            <span>Create a new study set</span>
+                            <div className={cx('permissions-title')}>Visible to everyone</div>
+                            <button className={cx('permissions-button')}>Change</button>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div className={cx('create-set-content')}>
+                <div className={cx('UIContainer')}>
+                    <div className={cx('create-set-item')}>
+                        <div className={cx('termRow-list')}>
+                            <TermRow></TermRow>
+                            <TermRow></TermRow>
+                        </div>
+                    </div>
+                    <div className={cx('create-set-footer')}></div>
                 </div>
             </div>
         </div>

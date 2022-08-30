@@ -10,13 +10,25 @@ background-color: #f6f7fb;
 position: relative;
 margin: 0 auto;
 padding: 0 16px;
+color: #303545;
 }
 .create-set-heading {
     padding: 60px 0px 40px;
     font-size: 20px;
     font-weight: 700;
-    color: #303545;
+   
 }
 .title-description-wrapper{
     max-width: 450px;
+}
+.permissions-wrapper {
+    text-align: right;
+}
+.permissions-title{
+    font-size: 14px;
+}
+.permissions-button {
+    background-color: rgba($color: #fff, $alpha: 0);
+    color: #4255ff;
+    font-weight: 600;
 }
