@@ -1,0 +1,23 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    line-height: 1.5;
+    padding: 9px;
+    cursor: pointer;
+    &:hover {
+        background-color: rgba(22,24,35,0.03);
+    }
+}
+
+.search-icon {
+    font-size: 1.8rem;
+    color: var(--text-color);
+}
+
+.nameStudySets {
+    flex: 1;
+    margin-left: 12px;
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: var(--text-color);
+}

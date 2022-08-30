@@ -1,9 +1,184 @@
 .wrapper {
     width: 100%;
+    //height: 100vh;
 }
-.home-img {
-    min-height: 1000px;
+.home-img-wrapper {
+    background-image: url(https://clipartix.com/wp-content/uploads/2016/12/Clipart-background-clipart-free-download-2.jpg);
+    //background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 228px;
+    //height: 100vh;
     width: 100%;
-    padding: 0;
+    padding: 64px 0;
     margin: 0;
+}
+
+.home-img-inner {
+    position: relative;
+}
+
+.home-img-container {
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 32px;
+    max-width: 1300px ;
+}
+
+.home-img-container__wrapper {
+    position: relative;
+}
+
+.home-img-container__img {
+    border-radius: 24px;
+    display: block;
+    min-height: 100px;
+    object-fit: cover;
+    width: 100%;
+}
+
+.home-img-container__content {
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.home-img-container__content .home-img-container {
+    align-items: flex-end;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.home-img-container__text,.home-img-container__btn {
+    margin: 48px;
+}
+
+.text {
+    color: #fff;
+    font-size: 4rem;
+    font-weight: 700;
+}
+
+.home-img-container__text p {
+    color: #fff;
+    font-size: 2rem;
+    font-weight: 300;
+}
+
+.home-img-container__btn-link {
+    display: flex;
+    padding: 20px 32px;
+    background-color: var(--primary);
+    align-items: center;
+    border-radius: 6px;
+    &:hover {
+        background-color: #4257b2;
+    }
+}
+
+.home-img-container__btn-link span {
+    color: #fff;
+    font-size: 2rem;
+    font-weight: 400;
+    line-height: 1.4;
+}
+
+//phàn dưới ảnh
+.home-title {
+    background-color: rgb(223, 235, 255);
+    text-align: center;
+    padding: 112px 0;
+}
+
+.home-title__text {
+    color: #303545;
+    font-size: 3.2rem;
+    font-weight: 700;
+}
+
+.home-title .home-title__text p em {
+    background-image: url(https://assets.quizlet.com/a/j/dist/app/i/prismic/scribble.6c75e80726e3401.svg);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    padding: 36px;
+}
+
+//phần callouts
+.callouts {
+    background-color: #fff;
+    padding-top: 60px;
+    //padding-bottom: 60px;
+}
+
+.callout-content {
+    display: flex;
+    //text-align: center;
+    align-items: center;
+}
+
+.isMaxWidth {
+    max-width: 1024px;
+    clear: both;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.callout-content__description {
+    text-align: center;
+    flex: 1 0 0;
+}
+
+.callout-content__img {
+    flex: 1.12 0 0;
+}
+
+.rightImage {
+    margin-left: 86px;
+}
+.callout-content__img img {
+    width: 100%;
+}
+
+.callout-content__title {
+    text-align: left;
+    font-size: 3.6rem;
+    font-weight: 600;
+}
+
+.callout-content__description p {
+    line-height: 1.4;
+    text-align: left;
+    font-size: 2rem;
+    font-weight: 400;
+}
+
+.space {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.imageDescription {
+    flex-direction: row-reverse;
+}
+
+.leftImage {
+    //flex-direction: row-reverse;
+    margin-right: 86px;
+}
+
+.bgCallouts {
+    background-color: rgb(223, 235, 255);;
+}
+
+.widthBtn {
+    //padding: 20px 32px;
+    text-align: center;
+    display: inline-block;
+    margin-bottom: 0;
 }

@@ -1,28 +1,31 @@
-.btn-primary {
+.btn-primary.btn-primary {
     background-color: #4255ff;
     color: #fff;
     font-weight: 500;
     border-radius: 5px;
 }
 
-.btn-primary--login {
+.btn-primary.btn-primary--login {
     background-color: transparent;
     color: #586380;
     border: none;
+    outline: none;
 }
-.btn-primary--login:hover {
+.btn-primary.btn-primary--login:hover {
     cursor: pointer;
     background-color: #f6f7fb;
     color:#586380 ;
-    border: none;
+    /* border: none;
+    outline: none; */
 }
 
-.btn-primary--signup {
+.btn-primary.btn-primary--signup {
     background-color: #ffcd1f;
     color: var(--text-color);
     border: none;
+    margin-right: 16px;
 }
-.btn-primary--signup:hover {
+.btn-primary.btn-primary--signup:hover {
     cursor: pointer;
     background-color: #ffdc62;
     color:var(--text-color);

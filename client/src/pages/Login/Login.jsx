@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 import './Login.scss'
 import 'antd/dist/antd.min.css'
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import {CloseOutlined} from '@ant-design/icons';
 import Input from '~/components/Input/Input';
 import Error from '~/components/Error/Error';
 import { message } from 'antd';
+import { loginUser } from '~/redux/apiRequest';
 
 function Login() {
     const[info,setInfo] = useState({
@@ -14,6 +17,9 @@ function Login() {
     })
     const[error,setError] = useState("")
     const [style,setStyle] = useState({display: "none"})
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const showError = (message) => {
         setError(message);
@@ -49,26 +55,24 @@ function Login() {
    
     const handleLogin = async (e) => { 
         e.preventDefault();
-        console.log(info);
+        //console.log(info);
+        const newUser = {
+            username:info.username, 
+            password:info.password,
+        }
+        //let statuss = 1;
         if(checkEmptyError(info))
         {
             if(checkFormatError(info.username))
            {
-            const res = await axios
-            .post('http://localhost:5000/auth/login', {
-               username:info.username, 
-               password:info.password,
-            })
-            .then (() => {
-                alert("Success");
-                window.location.replace('/latest');         
-            })
-            .catch(() => {
+             const statuss = await loginUser(newUser, dispatch, navigate)
+            if(statuss === 401)
                 showError("THE LOGIN DETAILS YOU PROVIDED ARE INCORRECT. PLEASE TRY AGAIN.");
-            });
-          
            }
         }
+        //console.log(statuss);
+        // if(statuss == 401)
+        //         showError("THE LOGIN DETAILS YOU PROVIDED ARE INCORRECT. PLEASE TRY AGAIN.");
       }
     return (
         <div className="modal">
@@ -82,7 +86,7 @@ function Login() {
                     <div className="modal__login__close">
                          <CloseOutlined 
                              onClick={(e) => {
-                             window.location.replace('/');
+                             navigate('/');
                              }} />
                      </div>
                     <div className="modal__login__body_info">
@@ -90,7 +94,8 @@ function Login() {
                             <h3 
                             className="role-signup"
                             onClick={(e) => {
-                                window.location.replace('/signup');
+                                //window.location.replace('/signup');
+                                navigate('/signup');
                             }}
                             >Sign up</h3>
                             <h3 
@@ -153,6 +158,7 @@ function Login() {
                         <h3 className="login-reminder">Remember to log out of shared devices</h3> 
                     </div>
                     </div>
+
                 </div>
               </div>
         </div>

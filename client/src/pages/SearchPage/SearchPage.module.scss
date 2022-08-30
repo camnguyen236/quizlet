@@ -1,0 +1,166 @@
+.wrapper {
+    width: 100%;
+}
+
+.headerSearch {
+    background-color: #fff;
+}
+
+.headerSearch__container {
+    margin: auto;
+    max-width: 1000px;
+    padding: 32px 16px 0;
+}
+
+.searchArea__inner {
+    border-radius: 5px;
+    border: 1px solid #d9dde8;
+    background-color: #fff;
+    display: flex;
+    padding: 6px 16px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.searchArea__inner-icon {
+    color: #586380;
+    font-size: 2rem;
+}
+
+.closeIcon {
+    background-color: #f4f6fc;
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    cursor: pointer;
+}
+
+.searchArea__inner-text {
+    line-height: 1.5;
+    font-size: 1.6rem;
+    height: 48px;
+    flex: 1 1 auto;
+    padding: 0 16px;
+    width: 100%;
+    &::placeholder {
+        font-size: 2rem;
+        color: var(--text-color);
+        font-weight: 600;
+    }
+}
+
+.searchSubNav {
+    margin-top: 38px;
+}
+
+.searchSubNav__wrapper {
+    position: relative;
+    &::after {
+        background: #e6e9f1 ;
+        border-radius: 0.25rem;
+        bottom: 0;
+        content: " ";
+        height: 2px;
+        left: 0;
+        position: absolute;
+        right: 16rem;
+        width: 100%;
+    }
+}
+
+.searchSubNav__tabList {
+    display: flex;
+    position: relative;
+}
+
+.searchSubNav__tabList-item {
+    cursor: pointer;
+    font-size: 1.6rem;
+    color: var(--text-color);
+    font-weight: 600;
+    position: relative;
+    &:nth-child(2) {
+        margin: 0 16px;
+    }
+    &:hover::after {
+        color: var(--primary);
+        bottom: -1px;
+        content: " ";
+        //height: 4px;
+        left: 0;
+        right: 0;
+        position: absolute;
+        width: 100%;
+        border: 1px solid var(--primary);
+        z-index: 1;
+    }
+}
+
+//search result
+.searchResult {
+    margin: auto;
+    max-width: 1000px;
+    padding: 32px 16px;
+}
+
+.searchResultView {
+    margin-bottom: 64px;
+}
+
+.searchResultView__header {
+    display: flex;
+    margin-bottom: 24px;
+    justify-content: space-between;
+}
+
+.searchResultView__header h3 {
+    font-size: 2.7rem;
+    font-weight: 700;
+    line-height: 1.333333;
+    color: var(--text-color);
+}
+
+.searchResultView__header .searchResultView__header-link {
+    font-size: 1.6rem;
+    font-weight: 700;
+    display: block;
+    color: #4255ff;
+}
+
+.searchResultView__results {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 16px;
+    row-gap: 32px;
+}
+
+//line
+.searchSubNav__tabList .line{
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    width: 76px;
+    height: 2px;
+    border-radius: 15px;
+    background-color: var(--primary);
+    transition: all 0.2s ease;
+    z-index: 1;
+}
+
+// .active {
+   
+// }
+
+.modal {
+    position: fixed;
+    top:0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0,0,0, 0.3);
+    z-index: 10;
+}

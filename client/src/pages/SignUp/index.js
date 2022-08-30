@@ -1,11 +1,15 @@
 import classNames from 'classnames/bind';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import styles from './SignUp.module.scss';
 import Buttonn from '~/components/Buttonn';
 import { DatePicker, Space } from 'antd';
 import axios from 'axios';
 import { CloseOutlined } from '@ant-design/icons';
+import { registerUser } from '~/redux/apiRequest';
+import { registerGoogle } from '~/redux/apiRequest';
 
 const cx = classNames.bind(styles);
 
@@ -21,7 +25,11 @@ function SignUp() {
     const [birthdayy, setBirthdayy] = useState('');
     //const [details, setDetails] = useState({ birthday: '', email: '', username: '', password: '' });
 
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
     const dateFormat = 'DD-MM-YYYY';
+
     const handleChangeEmail = async (event) => {
         setErrorEmail(false);
         const url = 'http://localhost:5000/auth/user/email/?email=' + event.target.value;
@@ -48,25 +56,40 @@ function SignUp() {
             });
     };
 
-    const onSubmit = async (data) => {
-        console.log(data);
-        let birthday = birthdayy;
-        let email = data.email;
-        let username = data.username;
-        let password = data.password;
+    const handleSignUpWithGoogle = async (e) => {
         const res = await axios
-            .post('http://localhost:5000/auth/register', {
-                birthday,
-                email,
-                username,
-                password,
+            .get('http://localhost:5000/auth/google')
+            .then(() => {
+                window.location.replace('/latest');
             })
-            .catch((error) => {
-                //setError('true');
+            .catch((err) => {
+                console.log(err);
             });
-        if (res.status === 200) {
-            window.location.replace('/latest');
-        }
+        // if (res.status === 200) {
+        //     window.location.replace('/latest');
+        // }
+    };
+    const onSubmit = async (data) => {
+        const newUser = {
+            birthday: birthdayy,
+            email: data.email,
+            username: data.username,
+            password: data.password,
+        };
+        // const res = await axios
+        //     .post('http://localhost:5000/auth/register', {
+        //         birthday,
+        //         email,
+        //         username,
+        //         password,
+        //     })
+        //     .catch((error) => {
+        //         //setError('true');
+        //     });
+        registerUser(newUser, dispatch, navigate);
+        // if (res.status === 200) {
+        //     window.location.replace('/latest');
+        // }
     };
 
     return (
@@ -79,7 +102,8 @@ function SignUp() {
                 <div className={cx('signUp-iconExit')}>
                     <CloseOutlined
                         onClick={(e) => {
-                            window.location.replace('/');
+                            //window.location.replace('/');
+                            navigate('/');
                         }}
                     />
                 </div>
@@ -89,15 +113,17 @@ function SignUp() {
                         <h3
                             className={cx('signUp-info__auth')}
                             onClick={(e) => {
-                                window.location.replace('/login');
+                                //window.location.replace('/login');
+                                navigate('/login');
                             }}
+                            //to="/login"
                         >
                             Login
                         </h3>
                     </div>
                     <div className={cx('signUp-info__connect')}>
                         <div className={cx('signUp-info__connect-google')}>
-                            <a className={cx('signUp-info__connect-link')} href="http://localhost:5000/auth/google/">
+                            <a onClick={handleSignUpWithGoogle} className={cx('signUp-info__connect-link')}>
                                 <span className={cx('signUp-info__connect-wrapper')}>
                                     <img
                                         className={cx('signUp-info__connect-img')}

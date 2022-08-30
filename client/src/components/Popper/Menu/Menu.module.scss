@@ -1,0 +1,33 @@
+.content {
+    width: 210px;
+    //flex-direction: column;
+    //display: block;
+}
+
+.wrapMenuButton {
+    display: flex;
+    align-items: center;
+    &.separate {
+        border-top: 1px solid rgba(22,24,35,0.03);
+    }
+    &:hover {
+        background-color: rgba(22,24,35,0.03);
+        overflow: hidden;
+        cursor: pointer;
+    }
+}
+
+.menuButton__title {
+    background-color: transparent;
+    //padding-left: 12px;
+    padding: 8px 26px;
+    color: #80879b;
+    width: 100%;
+    text-align: left;
+    //grid-row: auto;
+}
+
+.menuButton__icon {
+    padding-left: 12px;
+    color: #80879b;
+}

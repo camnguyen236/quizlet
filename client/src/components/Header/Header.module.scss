@@ -1,0 +1,114 @@
+.wrapper {
+    --search-height: 34px;
+    --search-border-radius:30px;
+    --search-button-width: 30px;
+    --search-top-spacer: 6px;
+    height: var(--default-layout-header-height);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    box-shadow: 0px 1px 1px rgb(0 0 0 / 12%);
+    z-index: 10;
+}
+
+.inner {
+    height: 100%;
+    width: var( --default-layout-width);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-contentLeft {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.header-contentLeft__logo {
+    padding: 0px 16px;
+}
+
+.header-contentLeft__logo-img {
+    height: 100%;
+    width: 96px;
+}
+
+.header-contentLeft__menu {
+    height: 100%;
+    padding: 0 12px;
+}
+
+.header-contentLeft__menu-link {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.header-contentLeft__menu-span {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--text-color);
+}
+
+.header-contentRight {
+    display: flex;
+}
+
+.btn-wrap {
+    height: var(--search-height);
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    padding: 0 24px;
+}
+
+.btn-login {
+    padding: 8px 16px;
+    background-color: transparent;
+    &:hover {
+        cursor: pointer;
+        background-color: #f6f7fb;
+    }
+}
+
+.current-user {
+    background-color: #fff;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+}
+
+.notification {
+    display: flex;
+    width: 32px;
+    height: 32px;
+    border: 1px solid #d4d7db;
+    border-radius: 50%;
+    //text-align: center;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.user-avatar {
+    width: 32px;
+    height: 32px;
+    background-color: rgb(111, 145, 255);
+    margin-left: 24px;
+    border-radius: 50%;
+}
+.notification button {
+    background-color: transparent;
+    padding: 0;
+    margin: 0;
+}
+
+.notification.notification__icon {
+    color: #939bb4;
+}
+// //menu
+// .menu-items {
+//     width: 224px;
+// }
