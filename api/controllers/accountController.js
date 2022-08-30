@@ -41,25 +41,25 @@ class accountController {
         }
     };
 
-  // [GET] /accounts/username
-  getAccount = async (req, res) => {
-    try {
-        const account = await Account.findOne({
-            username: req.params.username
-        });
-        const { password, achievement, studySet, refreshToken, ...others } =
-            account._doc;
-        res.status(200).json({
-            status: 'Success',
-            data: others
-        });
-    } catch (err) {
-        res.status(500).json({
-            status: 'Fail',
-            message: err
-        });
-    }
-};
+    // [GET] /accounts/username
+    getAccount = async (req, res) => {
+        try {
+            const account = await Account.findOne({
+                username: req.params.username
+            });
+            const { password, achievement, studySet, refreshToken, ...others } =
+                account._doc;
+            res.status(200).json({
+                status: 'Success',
+                data: others
+            });
+        } catch (err) {
+            res.status(500).json({
+                status: 'Fail',
+                message: err
+            });
+        }
+    };
 
   // [GET] /accounts/
   getAccountByAccToken = (req, res) => {

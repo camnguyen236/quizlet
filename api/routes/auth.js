@@ -13,6 +13,12 @@ router.get("/user/username/", authController.checkExistedUsername);
 //api to get user by email
 router.get("/user/email/", authController.checkExistedEmail);
 
+////// GET Account by username or email //////
+router.get(
+    '/:usernameOrEmail',
+    authController.checkExistedUsernameOrEmail
+);
+
 router.get(
   "/google",
   passport.authenticate("google", {
