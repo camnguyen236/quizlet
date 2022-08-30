@@ -36,8 +36,8 @@ const AccountSchema = new mongoose.Schema({
             type: Array,
             required: false
         },
-        dayStreak: Number,
-        weekStreak: Number
+        dayStreak: Number
+        //weekStreak: Number
     },
     studySet: [
         {

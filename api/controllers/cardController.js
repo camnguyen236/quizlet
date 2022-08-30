@@ -1,64 +1,80 @@
 const Card = require('../models/Card');
 const StudySet = require('../models/StudySet');
+const catchAsync = require('../utils/catchAsync');
+const AppError = require('../utils/appError');
 
 class cardController {
-    // [POST] 
-    async addCard(req, res, next) {
-        try {
-            const card = new Card(req.body);
-            const save = await card.save();
-            if (req.body.studySet) {
-                const studySet = await StudySet.findById(req.body.studySet);
-                await studySet.updateOne({ $push: { cards: save._id}});
-            }
-            res.status(200).json(save);
-        } catch (err) {
-            res.status(500).json(err);
+    // [POST]
+    addCard = catchAsync(async (req, res, next) => {
+        const card = new Card(req.body);
+        const save = await card.save();
+        if (req.body.studySet) {
+            const studySet = await StudySet.findById(req.body.studySet);
+            await studySet.updateOne({ $push: { cards: save._id } });
         }
-    }
+        res.status(200).json({
+            status: 'success',
+            data: save
+        });
+    });
 
     // [GET]
-    async getAllCards(req, res, next) {
-        try {
-            const allCards = await Card.find();
-            console.log(req.session)
-            res.status(200).json(allCards);
-        } catch (err) {
-            res.status(500).json(err);
-        }
-    }
+    getAllCards = catchAsync(async (req, res, next) => {
+        const allCards = await Card.find();
+        console.log(req.session);
+        res.status(200).json({
+            status: 'success',
+            data: allCards
+        });
+    });
 
     // [GET] /:id
-    async getACard(req, res, next) {
-        try {
-            const card = await Card.findById(req.params.id).populate('studySet');
-            res.status(200).json(card);
-        } catch (err) {
-            res.status(500).json(err);
-        }
-    }
+    getACard = catchAsync(async (req, res, next) => {
+        const card = await Card.findById(req.params.id).populate('studySet');
+        res.status(200).json({
+            status: 'success',
+            data: card
+        });
+    });
 
     // [PUT] /:id
-    async UpdateCard(req, res, next) {
-        try {
-            await Card.updateOne({ _id: req.params.id }, req.body);
-            res.status(200).json('Updated successfully');
-        } catch (err) {
-            res.status(500).json(err);
+    UpdateCard = catchAsync(async (req, res, next) => {
+        const card = await Card.updateOne({ _id: req.params.id }, req.body);
+        if (!card) {
+            return next(
+                new AppError(
+                    `No Card found with that ID: ${req.params.id}!`,
+                    404
+                )
+            );
         }
-    }
+        res.status(200).json({
+            status: 'success',
+            data: card
+        });
+    });
 
     // [DELETE] /:id
-    async DeleteCard(req, res, next) {
-        try {
-            await StudySet.updateMany({cards: req.params.id}, {$pull: {cards: req.params.id}});
-            await Card.deleteOne({ _id: req.params.id });
-            // res.redirect('back');
-            res.status(200).json('Deleted successfully');
-        } catch (err) {
-            res.status(500).json(err);
+    DeleteCard = catchAsync(async (req, res, next) => {
+        await StudySet.updateMany(
+            { cards: req.params.id },
+            { $pull: { cards: req.params.id } }
+        );
+        const card = await Card.deleteOne({ _id: req.params.id });
+        // res.redirect('back');
+        if (!card) {
+            return next(
+                new AppError(
+                    `No Card found with that ID: ${req.params.id}!`,
+                    404
+                )
+            );
         }
-    }
+        res.status(200).json({
+            status: 'success',
+            data: null
+        });
+    });
 }
 
 module.exports = new cardController();
