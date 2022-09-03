@@ -70,7 +70,7 @@ function Header() {
                                     alt=""
                                 />
                             </Menu>
-                            <span>{user.username}</span>
+                            <span>{user.user.username}</span>
                         </div>
                     ) : (
                         <>

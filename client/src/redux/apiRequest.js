@@ -1,6 +1,14 @@
 import axios from 'axios';
 
-import { loginStart, loginSuccess, loginFalse, registerStart, registerSuccess, registerFalse } from './authSlice';
+import {
+    loginStart,
+    loginSuccess,
+    loginFalse,
+    registerStart,
+    registerSuccess,
+    registerFalse,
+    logoutStart,
+} from './authSlice';
 
 export const loginUser = async (user, dispatch, navigate) => {
     dispatch(loginStart());
@@ -26,4 +34,8 @@ export const registerUser = async (user, dispatch, navigate) => {
     } catch (err) {
         dispatch(registerFalse());
     }
+};
+
+export const logOut = async (dispatch, navigate) => {
+    dispatch(logoutStart());
 };
