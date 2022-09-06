@@ -53,6 +53,6 @@ router.get("/login", function (req, res, next) {
 router.post("/login", authController.handleLogin);
 
 // Logout
-router.get("/logout", authController.handleLogout);
+router.post("/logout", verifyJWT, authController.handleLogout);
 
 module.exports = router;

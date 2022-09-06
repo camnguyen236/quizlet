@@ -1,8 +1,9 @@
 // import React from 'react';
-// import { Button } from 'antd';
 import classNames from 'classnames/bind';
+import axios from 'axios';
+import jwt_decode from 'jwt-decode';
 //import Tippy from '@tippyjs/react/headless';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { BellOutlined, ProfileOutlined, SettingOutlined, LogoutOutlined } from '@ant-design/icons';
 import styles from '~/components/Header/Header.module.scss';
@@ -28,15 +29,50 @@ const MENU_ITEMS = [
         icon: <LogoutOutlined />,
         title: 'Log out',
         separate: true,
-        to: '/',
+        //to: '/',
     },
 ];
 
 function Header() {
     const user = useSelector((state) => state.auth.login.currentUser);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     console.log(user);
-    //const currentUser = true;
+
+    //refresh token
+    // let axiosJWT = createAxios(user, dispatch, loginSuccess);
+
+    // const refreshToken = async () => {
+    //     try {
+    //         const res = await axios.post('', {
+    //             withCredentials: true,
+    //         });
+    //         return data.res; //trả về accesstoken và refreshtoken mới
+    //     } catch (err) {
+    //         console.log(err);
+    //     }
+    // };
+
+    // axiosJWT.interceptors.request.use(
+    //     async (config) => {
+    //         let date = new Date();
+    //         const decodeToken = jwt_decode(user?.accessToken);
+    //         if (decodeToken.exp < date.getTime() / 1000) {
+    //             const data = await refreshToken();
+    //             const refreshUser = {
+    //                 ...user,
+    //                 accessToken: data.accessToken,
+    //                 //refreshToken: data.refreshToken
+    //             };
+    //             dispatch(loginSuccess(refreshUser));
+    //             config.headers['token'] = 'Bearer ' + data.accessToken;
+    //         }
+    //         return config;
+    //     },
+    //     (err) => {
+    //         return Promise.reject(err);
+    //     },
+    // );
 
     return (
         <header className={cx('wrapper')}>
@@ -70,7 +106,7 @@ function Header() {
                                     alt=""
                                 />
                             </Menu>
-                            <span>{user.user.username}</span>
+                            <span className={cx('current-user__username')}>{user.user.username}</span>
                         </div>
                     ) : (
                         <>
