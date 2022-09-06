@@ -11,7 +11,7 @@ const { verifyJWT } = require("../middlewares/auth");
 function route(app) {
   app.use("/auth", authRoute);
   app.use("/refresh-token", refreshTokenRoute);
-  app.use(verifyJWT);
+  //app.use(verifyJWT);
   app.use("/email", emailRoute);
   app.use("/accounts", verifyJWT, accountRoute);
   app.use("/study-sets", studySetRoute);
