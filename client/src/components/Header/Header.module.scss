@@ -79,6 +79,13 @@
     align-items: center;
 }
 
+.current-user__username {
+    margin-left: 6px;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
 .notification {
     display: flex;
     width: 32px;

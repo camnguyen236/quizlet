@@ -1,6 +1,16 @@
 import axios from 'axios';
 
-import { loginStart, loginSuccess, loginFalse, registerStart, registerSuccess, registerFalse } from './authSlice';
+import {
+    loginStart,
+    loginSuccess,
+    loginFalse,
+    registerStart,
+    registerSuccess,
+    registerFalse,
+    logoutStart,
+    logoutSuccess,
+    logoutFalse,
+} from './authSlice';
 
 export const loginUser = async (user, dispatch, navigate) => {
     dispatch(loginStart());
@@ -25,5 +35,18 @@ export const registerUser = async (user, dispatch, navigate) => {
         navigate('/login');
     } catch (err) {
         dispatch(registerFalse());
+    }
+};
+
+export const logOut = async (dispatch, id, navigate, accessToken, axiosJWT) => {
+    dispatch(logoutStart());
+    try {
+        await axiosJWT.post('http://localhost:5000/auth/logout', id, {
+            headers: { authorization: `Bearer ${accessToken}` },
+        });
+        dispatch(logoutSuccess());
+        navigate('/');
+    } catch (err) {
+        dispatch(logoutFalse());
     }
 };
