@@ -1,6 +1,7 @@
 import axios from 'axios';
-
+import { useSelector } from 'react-redux';
 import { loginStart, loginSuccess, loginFalse, registerStart, registerSuccess, registerFalse } from './authSlice';
+import { getEmailError, getEmailSuccess } from './emailSlice';
 
 export const loginUser = async (user, dispatch, navigate) => {
     dispatch(loginStart());
@@ -14,6 +15,16 @@ export const loginUser = async (user, dispatch, navigate) => {
     } catch (err) {
         dispatch(loginFalse());
         return err.response.status;
+    }
+};
+export const forgotPassword = async (input, dispatch, navigate) => {
+    try {
+        const res = await axios.get(`http://localhost:5000/auth/${input}`);
+        dispatch(getEmailSuccess(res.data.data));
+        navigate('/forgotten/password');
+    } catch (err) {
+        dispatch(getEmailError());
+        return err.response.data.status;
     }
 };
 

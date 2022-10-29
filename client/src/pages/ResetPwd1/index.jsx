@@ -4,12 +4,21 @@ import styles from './ResetPwd1.module.scss'
 import 'antd/dist/antd.min.css'
 import Input from '~/components/Input/Input';
 import Error from '~/components/Error/Error';
+import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { forgotPassword } from '~/redux/apiRequest';
 
 const cx = classNames.bind(styles);
 function ResetPwd() {
     const[error,setError] = useState("")
     const [input,setInput] = useState("");
     const [style,setStyle] = useState({display: "none"})
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+  
+  
     const showError = (message) => {
         setError(message);
         setStyle({display:"block"})
@@ -22,15 +31,16 @@ function ResetPwd() {
                }
         return true;
     }
-    const handleSubmit = (e) => {   
+    
+    const handleSubmit = async (e) => {   
         e.preventDefault();
         if(checkEmptyError(input))
-        {
-            console.log(input);
-            window.location.replace('/forgotten/password');  
-
+        { 
+            const status = await forgotPassword(input, dispatch,navigate)
+            if(status === 'Fail')
+                showError("THE LOGIN DETAILS YOU PROVIDED ARE INCORRECT. PLEASE TRY AGAIN.");
         }
-    
+
     }
     return ( 
         <div className={cx("resetPwd-wrapper")}>
